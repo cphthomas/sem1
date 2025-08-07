@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korrelation, Lineær regression og Chi i anden tests</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body data-page-id="cbs2">
+    <div class="container py-5">
+        <!-- For demo purpose -->
+        <div class="row text-center text-white mb-1">
+            <div class="col-lg-8 mx-auto">
+                <!-- <h1 class="display-2"><i>Korrelation, Lineær regression og Chi i anden tests</i></h1> -->
+
+            </div>
+        </div><!-- End -->
+
+
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+
+                <!-- Timeline -->
+                <ul class="timeline">
+                    <i>
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+
+                            <div class="timeline-arrow"></div>
+
+
+                            <!-- <div class="display-4">Lær om Excel Pivottabeller</div> -->
+
+
+
+
+                            <p><i>
+                                    <h3>Korrelation, Lineær regression og Chi i anden tests</h3>
+                                    <p>
+                                        <u>Formål:</u> <br>
+                                        At kunne analysere multivariate datasæt<br>
+                                        <!-- <u>Gnist:</u> <br>
+                                        Er andelen af Mobilpay brugere den samme blandt mænd og kvinder? <br> -->
+                                        <u>Anslået tidsforbrug:</u><br>
+                                        5 timer<br>
+                                        <u>Forudsætning:</u><br><br>
+                                        <a href="https://s.tepedu.com/kapitel/10" class="effectLinks"
+                                            data-replace="Gå til kapitel 10" target="_blank">
+                                            <span>Korrelation</span>
+                                        </a>
+
+                                        <a href="https://s.tepedu.com/kapitel/11" class="effectLinks"
+                                            data-replace="Gå til kapitel 11" target="_blank">
+                                            <span>Lineær regressionsanalyse</span>
+                                        </a>
+
+                                        <a href="https://s.tepedu.com/kapitel/17" class="effectLinks"
+                                            data-replace="Gå til kapitel 17" target="_blank">
+                                            <span>Chi i anden tests</span>
+                                        </a>
+
+                                        <a href="https://s.tepedu.com/kapitel/24#skabeloner" class="effectLinks"
+                                            data-replace="Gå til kapitel 24" target="_blank">
+                                            <span>Materialer &rarr; Skabeloner</span>
+                                        </a>
+
+
+
+
+                                        <br>
+                                        <hr>
+                                        <u>Opgave:</u> <br>
+                                        Besvar spørgsmålene, upload i Workshop inden deadline. <br>
+                                        Du får tildelt 2 opgaver du kan sammenligne din egen opgave med, du vælger en
+                                        opgave og sammenligner med din egen opgave, din sammenligning er til dit eget
+                                        brug.
+                                        <br>
+                                        <hr>
+                                        <u>Feedback:</u> <br>
+                                        Feedback2me under Workshop <br>
+                                        Bemærk du behøver kun kommentere på en af opgaverne du får
+                                        allokeret.<br><br>
+
+                                        <u>Format:</u><br>
+                                        Denne besvarelse skal samles i et word dokument med eventuelt output fra
+                                        Freestat, Excel i samme dokument ved det relevante spørgsmål. <br>
+                                        Dvs. <b>IKKE</b> i Excel, pdf eller andet, derimod i et samlet word-dokument.
+                                        <br>
+                                        Der skal <b>IKKE</b> angives kilder eller indsættes bibliografi. <br>
+                                        Sørg for tydeligt at nummerere dine svar, så dine medstuderende nemt kan
+                                        navigere i din besvarelse. <br>
+                                        Benyt de relevante skabeloner til det pågældende test.
+
+                                    </p>
+
+
+
+
+
+
+                                </i>
+                            </p>
+
+
+                        </li>
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+
+                            <div class="timeline-arrow"></div>
+                            <h2>
+                                Excelfiler
+                            </h2>
+
+                            <p>
+                                For at besvare de nedenstående spørgsmål, skal man benytte nedenstående Excelfil og
+                                Freestat. <br>
+
+                                <br>
+
+                                <a href="/files/lejebolig.xlsx" class="effectLinks"
+                                    data-replace="Hent lejebolig Excelfil" target="_blank">
+                                    <span>Danske lejeboliger til leje</span>
+                                </a>
+
+                                <a href="https://s.tepedu.com/kapitel/24" class="effectLinks"
+                                    data-replace="Hent Freestat i materialer i statistikbogen" target="_blank">
+                                    <span>Freestat</span>
+                                </a>
+
+
+                            </p>
+
+
+
+
+                        </li>
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h2>
+                                Spørgsmål
+                            </h2>
+                        </li>
+
+
+
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h3>1</h3>
+                            <ol type="A">
+                                <li>
+                                    Gennemfør en korrelationsanalyse på følgende variable fra ovenstående datasæt med
+                                    lejeboliger:
+                                </li>
+
+                            </ol>
+                            <br>
+                            <table class="table table-sm table-striped table-hover table-small-font">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">Variable</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Husleje</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Depositum</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aconto</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Forudbetalt leje</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Værelser</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Størrelse</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Storby Dummy</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hus Dummy</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Værelse Dummy</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            Bemærk du skal selv danne Dummy variablene. <br>
+                            Hus Dummy og Værelse dummy, dannes af boligtype variablen. <br>
+                            Der er ingen skabelon til denne opgave.
+
+                            Forudsætning:<br>
+
+                            <a href="https://s.tepedu.com/kapitel/11" class="effectLinks"
+                                data-replace="Gå til kapitel 10" target="_blank">
+                                <span>Korrelation</span>
+                            </a>
+
+
+
+
+                            <br>
+                            <br>Vink: <br>
+                            <img src="images/korr.png" width="100%">
+
+                        </li>
+
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h3>2</h3>
+                            <ol type="A">
+                                <li>Opstil en lineær regressionsmodel med de 9 variable fra Spørgsmål 1. Modellen skal
+                                    forklare husleje, ud fra de 8
+                                    forklarende
+                                    variable.</li>
+                                <li>Kommenter på samtlige forklarende variables koefficienter, samt den samlede model.
+                                </li>
+                                <li>Gennemfør forudsætningscheck (Vær specielt opmærksom på variablene Rum og
+                                    Størrelse),
+                                    reducer om nødvendigt startmodellen til en slutmodel.</li>
+
+                            </ol>
+                            <br>
+                            Forudsætning:<br>
+
+                            <a href="https://s.tepedu.com/kapitel/11" class="effectLinks"
+                                data-replace="Gå til kapitel 11" target="_blank">
+                                <span>Lineær regressionsanalyse</span>
+                            </a>
+
+                            <br>Vink: <br>
+                            Udsnit af startmodellen: <br>
+                            <img src="images/reg1.png" width="20%"> <br><br>
+
+                            Benyt den korrekte skabelon til at gennemføre testet. <br>
+
+
+
+                        </li>
+
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h3>3</h3>
+
+                            Fordelingen i lejeboligmassen i Danmark har tidligere været: <br><br>
+
+                            <table class="table table-sm table-striped table-hover table-small-font">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">Boligtype</th>
+                                        <th scope="col">Andel</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Lejligheder</td>
+                                        <td>80%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Huse</td>
+                                        <td>15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Værelser</td>
+                                        <td>5%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <ol type="A">
+                                <li>
+                                    Test vha. et Goodness of fit test om dette stadig er tilfældet.
+                                </li>
+                            </ol>
+
+                            <br>
+
+                            Forudsætning:<br>
+
+                            <a href="https://s.tepedu.com/kapitel/17" class="effectLinks"
+                                data-replace="Gå til kapitel 17" target="_blank">
+                                <span>Goodness of fit test</span>
+                            </a>
+                            <br>Vink: <br>
+                            Du skal gennemføre et Goodness of fit test, brug fx. pivottabel til at bestemme antallet af
+                            de
+                            forskellige boligtyper. <br><br>
+
+                            Benyt den korrekte skabelon til at gennemføre testet. <br>
+                        </li>
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+                            <div class="timeline-arrow"></div>
+                            <h3>4</h3>
+
+                            <ol type="A">
+                                <li>
+                                    Test om der er sammenhæng mellem Boligtype og om lejeboligen ligger i storby.
+                                </li>
+                            </ol>
+                            <br>
+
+
+                            Forudsætning:<br>
+
+                            <a href="https://s.tepedu.com/kapitel/17" class="effectLinks"
+                                data-replace="Gå til kapitel 17" target="_blank">
+                                <span>Chi i anden test</span>
+                            </a>
+
+
+                            <br>Vink: <br>
+                            Du skal gennemføre et Chi i andet test, brug fx. pivottabel til at bestemme antallet af
+                            boligtype i og udenfor Storby. <br><br>
+                            Benyt den korrekte skabelon til at gennemføre testet. <br>
+                        </li>
+
+
+
+
+                </ul><!-- End -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="script.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjust if necessary to control when the animation starts
+            });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro til uge 38</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body data-page-id="cbs2">
+    <div class="container py-5">
+        <!-- For demo purpose -->
+        <div class="row text-center text-white mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-2"><i>Intro til uge 38</i></h1>
+
+            </div>
+        </div><!-- End -->
+
+
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+
+                <!-- Timeline -->
+                <ul class="timeline">
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <p>
+
+                            <i>
+
+                                <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                                        src="https://player.vimeo.com/video/1007230535?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                        title="Introduktion til 1. uge"></iframe></div>
+                                <script src="https://player.vimeo.com/api/player.js"></script>
+                                <br>
+                                <h3>Indhold</h3>
+                                <p>I denne uge skal vi se på hvad data er og hvilke datatyper der findes, samt hvordan
+                                    vi kan analysere disse vha. deskriptorer og konfidensintervaller.
+                                    <br><br>
+                                    Når vi arbejder med data, er det vigtigt at have samme sprog til at beskrive data,
+                                    således vi har samme rammesætning som kolleger, direktion og øvrige interessenter,
+                                    <br>
+
+                                    <hr>
+                                    <u>Ugens vejleder</u><br>
+                                    Thomas Petersen
+                                    <br><br><u>Ugens emne</u><br>
+                                    Metode
+                                </p>
+                            </i>
+                        </p>
+
+
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <p><i>
+                                <u>Formål</u><br>
+                                At lære sondringen mellem forskellige datatyper, samt hvordan disse kan
+                                beskrives, samt at bestemme konfidensintervaller.<br><br>
+                                <u>Aktivitetsoversigt</u><br>
+                                Ugen består af forskellige aktiviteter. Aktiviteterne varierer i tidsforbrug og
+                                sværhedsgrad. Du skal forvente at bruge
+                                ca. 30 timer for at komme i mål med alle aktiviteter og lave ugens temaprojekt. Hertil
+                                skal du lægge den tid, hvor du får vejledning og feedback. <br><br>
+
+                                <u>Materiale til ugen</u><br>
+
+                                Du skal i denne uge bruge følgende materialer fra boglisten: <br>
+
+                                <a href="https://s.tepedu.com/" class="effectLinks"
+                                    data-replace="Gå til statistik online-bogen" target="_blank">
+                                    <span>Statistik online-bogen</span>
+                                </a>
+
+                                <br>
+
+
+                                Hvad du præcis skal læse, er gengivet i forbindelse med hver aktivitet. <br>
+
+                                <hr>
+                                <u>Feedback</u> <br>
+                                Feedback på aktiviteter: <br>
+                                Du har ved nogle aktiviteter mulighed for at gennemse andres besvarelser af aktiviteter
+                                i peer-2-me feedback-modulet.
+                                Andre aktiviteter vil som f.eks. quizzer vil der være feedback i form af korrekte svar
+                                og en forklaring. <br><br>
+
+
+                                <u>Feedback på temaprojekt:</u> <br>
+                                Hvis dit team har uploadet temaprojektet inden deadline, vil teamet få feedback fra
+                                underviseren inden for 5 hverdage.
+                                Feedback kan være skriftligt, en lydfil, en videooptagelse eller en invitation til et
+                                Zoommøde, afhængigt af hvad der
+                                passer bedst til formatet. <br>
+
+
+
+
+
+
+                            </i>
+                        </p>
+
+
+
+
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul><!-- End -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="script.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjust if necessary to control when the animation starts
+            });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

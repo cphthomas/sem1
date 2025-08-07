@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksamen 1. Interne</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+<i>
+
+    <body data-page-id="tema">
+        <div class="container py-5">
+
+
+
+            <div class="row">
+                <div class="col-lg-7 mx-auto">
+
+                    <!-- Timeline -->
+                    <ul class="timeline">
+
+
+
+
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+
+                            <div class="timeline-arrow"></div>
+                            <p>
+
+
+                            <h1>BOGLISTE EFTERÅR 2025</h1>
+                            <h2>OMRÅDE:ØKONOMI FINANS</h2>
+                            <h3>UDDANNELSE:FIN</h3>
+                            <h4>SEMESTER:1</h4>
+
+
+
+
+
+
+                            <br>
+
+
+
+
+
+
+
+                            </p>
+
+                        </li>
+
+
+
+
+
+                        <li class="timeline-item bg-white ml-3 p-4 shadow">
+
+                            <div class="timeline-arrow"></div>
+
+                            <table class="table table-sm table-striped table-hover table-small-font table-bordered">
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>Alle bøger på semestret ligger samlet her:</p>
+                                            <p><a href="https://tepedu.dk/" target="_blank">https://tepedu.dk/</a></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>METODE</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://s.tepedu.com/" target="_blank">https://s.tepedu.com/</a></p>
+                                            <p>Onlinebog Gratis</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>BRANCHEKENDSKAB</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://branchekendskab.tepedu.dk/" target="_blank">https://branchekendskab.tepedu.dk/</a></p>
+                                            <p>Onlinebog Gratis</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>STATISTIK</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://s.tepedu.com/" target="_blank">https://s.tepedu.com/</a></p>
+                                            <p>Statistikprogrammet: Freestat</p>
+                                            <p>Onlinebog indeholder programmet 290,- kr. For 6 mdr. adgang</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>ERHVERVSØKONOMI INVESTERING OG FINANSIERING</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://if.tepedu.dk/" target="_blank">https://if.tepedu.dk/</a></p>
+                                            <p>Gratis Onlinebog med apps</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>MIKROØKONOMI</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://mikro.tepedu.dk/" target="_blank">https://mikro.tepedu.dk/</a></p>
+                                            <p>Gratis Onlinebog under udvikling</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>ERHVERVSØKONOMI OPTIMERING</p>
+                                            <p>Thomas Petersen</p>
+                                            <p><a href="https://eo.tepedu.dk/" target="_blank">https://eo.tepedu.dk/</a></p>
+                                            <p>Gratis Onlinebog med apps</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul><!-- End -->
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <script src="script.js"></script> -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                        } else {
+                            entry.target.classList.remove('in-view');
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Adjust if necessary to control when the animation starts
+                });
+
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    observer.observe(item);
+                });
+            });
+        </script>
+
+    </body>
+</i>
+
+</html>
