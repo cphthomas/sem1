@@ -126,7 +126,8 @@
             const day = copenhagenTime.getDay();
             const hour = copenhagenTime.getHours();
 
-            if ((day === 5 && hour >= 16) || day === 6 || day === 0) {
+            // Adjust to show next week if it's Friday after 10:00, Saturday, or Sunday
+            if ((day === 5 && hour >= 10) || day === 6 || day === 0) {
                 // Add days to get to next Monday
                 const daysToAdd = day === 0 ? 1 : day === 6 ? 2 : 3; // Sunday: +1, Saturday: +2, Friday: +3
                 copenhagenTime.setDate(copenhagenTime.getDate() + daysToAdd);
@@ -149,15 +150,37 @@
 
         function showRelevantTable() {
             const now = new Date();
-            const { weekNumber, year } = getAdjustedWeekNumber(now);
+            const actualWeekInfo = getAdjustedWeekNumber(now); // Get actual week info first
+            let { weekNumber, year } = actualWeekInfo;
 
             // Skjul alle tabeller først
             document.querySelectorAll('.calendar-container').forEach(container => {
                 container.style.display = 'none';
             });
 
-            // Vis den relevante tabel
-            const relevantContainer = document.getElementById(`week-${weekNumber}`);
+            let containerToShowId = `week-${weekNumber}`;
+
+            // Special case: If the actual current week is 35, always show week 35.
+            // This overrides the "show next week on Friday 10:00" rule for week 35.
+            const actualDate = new Date(now);
+            const actualDay = actualDate.getDay();
+            const actualHour = actualDate.getHours();
+            const actualWeekNumberUnadjusted = 1 + Math.floor((new Date(actualDate.getFullYear(), 0, 1) - new Date(actualDate.getFullYear(), 0, 1).getDay() + 4) / (7 * 24 * 60 * 60 * 1000)); // Simplified actual week number calculation
+
+            if (actualWeekInfo.weekNumber === 35 || (actualWeekNumberUnadjusted === 35 && (actualDay === 5 && actualHour >= 10 || actualDay === 6 || actualDay === 0))) {
+                containerToShowId = 'week-35';
+                weekNumber = 35; // Ensure the displayed week number is 35
+            }
+            // Special case for week 42: always show week 42 (autumn holiday)
+            else if (weekNumber === 42) {
+                containerToShowId = 'week-42';
+            }
+            // Special case for week 50: always show week 50 (eksamensforberedelse)
+            else if (weekNumber === 50) {
+                containerToShowId = 'week-50';
+            }
+
+            const relevantContainer = document.getElementById(containerToShowId);
             if (relevantContainer) {
                 relevantContainer.style.display = 'block';
             }
@@ -176,41 +199,1051 @@
 
 <body>
     <h1 style="text-align: center;">Uge <span id="current-week"></span></h1>
+    <!-- Week 35 -->
+    <div id="week-35" class="calendar-container">
+        <h2 style="text-align: center;">1. Uge</h2>
+        <h2 style="text-align: center;">Uge 36</h2>
+        <h2 style="text-align: center;">Underviser i uge 36: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
 
+    <!-- Week 36 -->
+    <div id="week-36" class="calendar-container">
+        <h2 style="text-align: center;">2. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
 
+    <!-- Week 37 -->
+    <div id="week-37" class="calendar-container">
+        <h2 style="text-align: center;">3. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
 
+    <!-- Week 38 -->
+    <div id="week-38" class="calendar-container">
+        <h2 style="text-align: center;">4. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
 
-    <!-- Week 1 -->
-    <div id="week-1" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
+    <!-- Week 39 -->
+    <div id="week-39" class="calendar-container">
+        <h2 style="text-align: center;">5. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
+
+    <!-- Week 40 -->
+    <div id="week-40" class="calendar-container">
+        <h2 style="text-align: center;">6. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
+
+    <!-- Week 41 -->
+    <div id="week-41" class="calendar-container">
+        <h2 style="text-align: center;">7. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@ek.dk</h2>
+        <br>
+        <table class="calendar-table">
+            <tbody>
+                <tr class="first-row">
+                    <td>
+                        <div style="color: black;">TID</div>
+                    </td>
+                    <td>
+                        <div>Mandag</div>
+                    </td>
+                    <td>
+                        <div>Tirsdag</div>
+                    </td>
+                    <td>
+                        <div>Onsdag</div>
+                    </td>
+                    <td>
+                        <div>Torsdag</div>
+                    </td>
+                    <td>
+                        <div>Fredag</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e2">Kontortid<br>Thomas</div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="e e1"><a
+                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
+                                Thomas</a></div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
+    </div>
+    <!-- Week 42 -->
+    <div id="week-42" class="calendar-container">
+        <h2 style="text-align: center;">Efterårsferie</h2>
         <h2 style="text-align: center;">Der er ikke Livelearning i denne uge</h2>
     </div>
-
-
-
-    <!-- Week 2 -->
-    <div id="week-2" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-
-        <h2 style="text-align: center;">Der er ikke Livelearning i denne uge</h2>
-    </div>
-
-    <!-- Week 3 -->
-    <div id="week-3" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-
-        <h2 style="text-align: center;">Der er ikke Livelearning i denne uge</h2>
-    </div>
-
-    <!-- Week 4 -->
-    <div id="week-4" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <h2 style="text-align: center;">Der er ikke Livelearning i denne uge</h2>
-    </div>
-
-    <!-- Week 5 -->
-    <div id="week-5" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
+    <!-- Week 43 -->
+    <div id="week-43" class="calendar-container">
+        <h2 style="text-align: center;">8. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas (tpet@ek.dk) og Theis (tb@ek.dk)</h2>
         <br>
         <table class="calendar-table">
             <tbody>
@@ -233,7 +1266,6 @@
                     <td>
                         <div>Fredag</div>
                     </td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
@@ -262,8 +1294,6 @@
                                 href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
                                 Thomas</a></div>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
@@ -272,7 +1302,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
@@ -281,7 +1310,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
@@ -290,7 +1318,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
@@ -299,11 +1326,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
@@ -312,11 +1338,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
@@ -325,7 +1350,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
@@ -334,7 +1358,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
@@ -351,7 +1374,6 @@
                                 Thomas</a></div>
                     </td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
@@ -360,18 +1382,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
-
-
             </tbody>
         </table>
         <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
     </div>
 
-    <!-- Week 6 -->
-    <div id="week-6" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
+    <!-- Week 44 -->
+    <div id="week-44" class="calendar-container">
+        <h2 style="text-align: center;">9. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas (tpet@ek.dk) og Theis (tb@ek.dk)</h2>
         <br>
         <table class="calendar-table">
             <tbody>
@@ -394,7 +1414,6 @@
                     <td>
                         <div>Fredag</div>
                     </td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
@@ -423,8 +1442,6 @@
                                 href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
                                 Thomas</a></div>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
@@ -433,7 +1450,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
@@ -442,7 +1458,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
@@ -451,7 +1466,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
@@ -460,11 +1474,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
@@ -473,11 +1486,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
@@ -486,7 +1498,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
@@ -495,7 +1506,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
@@ -512,7 +1522,6 @@
                                 Thomas</a></div>
                     </td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
@@ -521,17 +1530,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
-
             </tbody>
         </table>
         <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
     </div>
 
-    <!-- Week 7 -->
-    <div id="week-7" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
+    <!-- Week 45 -->
+    <div id="week-45" class="calendar-container">
+        <h2 style="text-align: center;">10. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas (tpet@ek.dk) og Theis (tb@ek.dk)</h2>
         <br>
         <table class="calendar-table">
             <tbody>
@@ -554,7 +1562,6 @@
                     <td>
                         <div>Fredag</div>
                     </td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
@@ -583,8 +1590,6 @@
                                 href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
                                 Thomas</a></div>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
@@ -593,7 +1598,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
@@ -602,7 +1606,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
@@ -611,7 +1614,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
@@ -620,11 +1622,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
@@ -633,11 +1634,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
@@ -646,7 +1646,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
@@ -655,7 +1654,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
@@ -672,7 +1670,6 @@
                                 Thomas</a></div>
                     </td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
@@ -681,17 +1678,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
-
             </tbody>
         </table>
         <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
     </div>
 
-    <!-- Week 8 -->
-    <div id="week-8" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
+    <!-- Week 46 -->
+    <div id="week-46" class="calendar-container">
+        <h2 style="text-align: center;">11. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas (tpet@ek.dk) og Theis (tb@ek.dk)</h2>
         <br>
         <table class="calendar-table">
             <tbody>
@@ -714,7 +1710,6 @@
                     <td>
                         <div>Fredag</div>
                     </td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
@@ -743,8 +1738,6 @@
                                 href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
                                 Thomas</a></div>
                     </td>
-
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
@@ -753,7 +1746,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
@@ -762,7 +1754,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
@@ -771,7 +1762,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
@@ -780,11 +1770,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
@@ -793,11 +1782,10 @@
                     </td>
                     <td></td>
                     <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
+                        <div class="e e2">Kontortid<br>Theis</div>
                     </td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
@@ -806,7 +1794,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
@@ -815,7 +1802,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
@@ -832,7 +1818,6 @@
                                 Thomas</a></div>
                     </td>
                     <td></td>
-
                 </tr>
                 <tr>
                     <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
@@ -841,19 +1826,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-
                 </tr>
-
             </tbody>
         </table>
         <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
     </div>
 
-
-    <!-- Week 9 -->
-    <div id="week-9" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-
+    <!-- Week 47 -->
+    <div id="week-47" class="calendar-container">
+        <h2 style="text-align: center;">12. Uge</h2>
+        <h2 style="text-align: center;">Underviser: Thomas (tpet@ek.dk) og Theis (tb@ek.dk)</h2>
         <br>
         <table class="calendar-table">
             <tbody>
@@ -869,2080 +1851,3 @@
                     </td>
                     <td>
                         <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-    <!-- Week 10 -->
-    <div id="week-10" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Søren <br> Email: soth@cphbusiness.dk</h2>
-
-        <div style="text-align: center;">
-            Der er andre tider i de uger hvor Søren underviser <br>
-
-        </div><br>
-        <table class="calendar-table">
-
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-    <!-- Week 11 -->
-    <div id="week-11" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk <br>
-            <p>
-                Der er andre tider i denne uge pga. finanskonference torsdag og fredag <br>
-            </p>
-        </h2>
-
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-    <!-- Week 12 SOTH-->
-    <div id="week-12" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Søren <br> Email: soth@cphbusiness.dk</h2>
-
-        <div style="text-align: center;">
-            Der er andre tider i de uger hvor Søren underviser <br>
-
-        </div><br>
-        <table class="calendar-table">
-
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-    <!-- Week 13 -->
-    <div id="week-13" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 14 -->
-    <div id="week-14" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 15 soth-->
-    <div id="week-15" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Søren <br> Email: soth@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/64008452124?pwd=ChaRuT6za6nD21mDvg9WZXSmZ66Ii2.1">Livelearning
-                                <br> Søren</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 16 -->
-    <div id="week-16" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 17 -->
-    <div id="week-17" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <!-- <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr> -->
-                
-                
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-
-
-    <!-- Week 18 -->
-    <div id="week-18" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 19 -->
-    <div id="week-19" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        
-        <p style="text-align: center;">Pga. Introforløb og kursus er tiderne for Live Learning anderledes end normalt denne uge, du er derfor velkommmen til at skrive på email</p>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                   
-                    <td>
-                        <!-- <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div> -->
-                    </td>
-                    <td>
-                        <!-- <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div> -->
-                    </td>
-                    <td>
-                        <!-- <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div> -->
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <!-- <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div> -->
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 20 -->
-    <div id="week-20" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Strøyer <br> Email: str1@cphbusiness.dk</h2>
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-    <!-- Week 21 -->
-    <div id="week-21" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <table class="calendar-table">
-            <tbody>
-                <tr class="first-row">
-                    <td>
-                        <div style="color: black;">TID</div>
-                    </td>
-                    <td>
-                        <div>Mandag</div>
-                    </td>
-                    <td>
-                        <div>Tirsdag</div>
-                    </td>
-                    <td>
-                        <div>Onsdag</div>
-                    </td>
-                    <td>
-                        <div>Torsdag</div>
-                    </td>
-                    <td>
-                        <div>Fredag</div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">8-9</span></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td>
-                    <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">9-10</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">10-11</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">11-12</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">12-13</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">13-14</span></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td>
-                        <div class="e e2">Kontortid<br>Thomas</div>
-                    </td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">14-15</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">15-16</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">16-17</span></td>
-                    <td></td>
-                    <td></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-                    <td></td>
-                    <td></td>
-                    <!-- <td>
-                        <div class="e e1"><a
-                                href="https://cphbusiness.zoom.us/j/7577575555?omn=69081854620">Livelearning <br>
-                                Thomas</a></div>
-                    </td> -->
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td class="tc"><span class="tct" style="color: black;">17-18</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-        <div style="text-align: center;">Klik på Livelearning for at deltage i Zoommøde</div>
-    </div>
-
-
-    <!-- Week 22 -->
-    <div id="week-22" class="calendar-container">
-        <h2 style="text-align: center;">Underviser: Thomas <br> Email: tpet@cphbusiness.dk</h2>
-        <br>
-        <h2 style="text-align: center;">Der er ikke Livelearning i denne uge</h2>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
