@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,28 @@
     <style>
         /* Remove custom styles that conflict with Bootstrap or white background */
         body {
-            color: #212529; /* Default text color for white background */
+            color: #212529;
+            /* Default text color for white background */
         }
-        .table td, .table th {
-            color: #212529; /* Ensure table text is dark on white background */
+
+        .table td,
+        .table th {
+            color: #212529;
+            /* Ensure table text is dark on white background */
         }
+
         .team-color-1 {
-            background-color: #ffffff !important; /* White */
+            background-color: #ffffff !important;
+            /* White */
         }
+
         .team-color-2 {
-            background-color: #e9ecef !important; /* Slightly darker grey */
+            background-color: #e9ecef !important;
+            /* Slightly darker grey */
         }
     </style>
 </head>
+
 <body data-page-id="tema">
     <div class="container py-5">
         <div class="row">
@@ -43,92 +53,467 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Isabella Maria</td><td>Lund Kühne</td><td>cph-ik95@stud.ek.dk</td><td>1</td></tr>
-                                
-                                <tr><td>Martine</td><td>Saadoun</td><td>cph-ms1408@stud.ek.dk</td><td>1</td></tr>
-                                <tr><td>Emily Anastasia</td><td>Toft</td><td>cph-et135@stud.ek.dk</td><td>1</td></tr>
-                                <tr><td>Jaser Ali Abdul-Hamed</td><td>Al-Kerwie</td><td>cph-ja488@stud.ek.dk</td><td>2</td></tr>
-                                <tr><td>Thor</td><td>Jensen</td><td>cph-tj417@stud.ek.dk</td><td>2</td></tr>
-                                <tr><td>Alexander Louis</td><td>Kjærgaard</td><td>alkj1000@stud.ek.dk</td><td>2</td></tr>
-                                <tr><td>Deborah Marie Veronica</td><td>Laier Lyster</td><td>cph-dj24@stud.ek.dk</td><td>2</td></tr>
-                                <tr><td>Mehlika</td><td>Cakiroglu</td><td>meca1000@stud.ek.dk</td><td>3</td></tr>
-                                <tr><td>Tilde Subcleff</td><td>Jensen</td><td>cph-tj415@stud.ek.dk</td><td>3</td></tr>
-                                <tr><td>Kasper</td><td>Madsen</td><td>cph-km246@stud.ek.dk</td><td>3</td></tr>
-                                <tr><td>Arnleyg</td><td>Samuelsen</td><td>cph-as843@stud.ek.dk</td><td>3</td></tr>
-                                <tr><td>Jeppe Rode</td><td>Andreasen</td><td>cph-ja490@stud.ek.dk</td><td>4</td></tr>
-                                <tr><td>Mia Subcleff</td><td>Jensen</td><td>cph-mj1265@stud.ek.dk</td><td>4</td></tr>
-                                <tr><td>Sebastian Wyrwik</td><td>Karlsson</td><td>cph-sk560@stud.ek.dk</td><td>4</td></tr>
-                                <tr><td>Louise</td><td>Rej-Kirkebjerg</td><td>cph-lr324@stud.ek.dk</td><td>4</td></tr>
-                                <tr><td>Amro Rami Mohammed</td><td>Alhamalawi</td><td>cph-aa671@stud.ek.dk</td><td>5</td></tr>
-                                <tr><td>Jónatan Ari</td><td>Bragason</td><td>cph-jb571@stud.ek.dk</td><td>5</td></tr>
-                                <tr><td>Anahita</td><td>Douzandeh-Mobbarez</td><td>cph-ad320@stud.ek.dk</td><td>5</td></tr>
-                                <tr><td>Tobias</td><td>Jensen</td><td>cph-tj416@stud.ek.dk</td><td>5</td></tr>
-                                <tr><td>Aria</td><td>Paulsen</td><td>cph-ap489@stud.ek.dk</td><td>6</td></tr>
-                                <tr><td>Martin</td><td>Staunsbjerg</td><td>cph-ms1230@stud.ek.dk</td><td>6</td></tr>
-                                <tr><td>Bibi Zenat</td><td>Zaidi</td><td>cph-bz40@stud.ek.dk</td><td>6</td></tr>
-                                <tr><td>Walaa Hisham</td><td>Al-Asmar</td><td>cph-wa39@stud.ek.dk</td><td>6</td></tr>
-                                <tr><td>Sofie Ina</td><td>Aller</td><td>cph-sa552@stud.ek.dk</td><td>7</td></tr>
+                                <tr>
+                                    <td>Isabella Maria</td>
+                                    <td>Lund Kühne</td>
+                                    <td>cph-ik95@stud.ek.dk</td>
+                                    <td>1</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Martine</td>
+                                    <td>Saadoun</td>
+                                    <td>cph-ms1408@stud.ek.dk</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Emily Anastasia</td>
+                                    <td>Toft</td>
+                                    <td>cph-et135@stud.ek.dk</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>Jaser Ali Abdul-Hamed</td>
+                                    <td>Al-Kerwie</td>
+                                    <td>cph-ja488@stud.ek.dk</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>Thor</td>
+                                    <td>Jensen</td>
+                                    <td>cph-tj417@stud.ek.dk</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>Alexander Louis</td>
+                                    <td>Kjærgaard</td>
+                                    <td>alkj1000@stud.ek.dk</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>Deborah Marie Veronica</td>
+                                    <td>Laier Lyster</td>
+                                    <td>cph-dj24@stud.ek.dk</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>Mehlika</td>
+                                    <td>Cakiroglu</td>
+                                    <td>meca1000@stud.ek.dk</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>Tilde Subcleff</td>
+                                    <td>Jensen</td>
+                                    <td>cph-tj415@stud.ek.dk</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>Kasper</td>
+                                    <td>Madsen</td>
+                                    <td>cph-km246@stud.ek.dk</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>Arnleyg</td>
+                                    <td>Samuelsen</td>
+                                    <td>cph-as843@stud.ek.dk</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>Jeppe Rode</td>
+                                    <td>Andreasen</td>
+                                    <td>cph-ja490@stud.ek.dk</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>Mia Subcleff</td>
+                                    <td>Jensen</td>
+                                    <td>cph-mj1265@stud.ek.dk</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>Sebastian Wyrwik</td>
+                                    <td>Karlsson</td>
+                                    <td>cph-sk560@stud.ek.dk</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>Louise</td>
+                                    <td>Rej-Kirkebjerg</td>
+                                    <td>cph-lr324@stud.ek.dk</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr>
+                                    <td>Amro Rami Mohammed</td>
+                                    <td>Alhamalawi</td>
+                                    <td>cph-aa671@stud.ek.dk</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Jónatan Ari</td>
+                                    <td>Bragason</td>
+                                    <td>cph-jb571@stud.ek.dk</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Anahita</td>
+                                    <td>Douzandeh-Mobbarez</td>
+                                    <td>cph-ad320@stud.ek.dk</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Tobias</td>
+                                    <td>Jensen</td>
+                                    <td>cph-tj416@stud.ek.dk</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Aria</td>
+                                    <td>Paulsen</td>
+                                    <td>cph-ap489@stud.ek.dk</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>Martin</td>
+                                    <td>Staunsbjerg</td>
+                                    <td>cph-ms1230@stud.ek.dk</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>Bibi Zenat</td>
+                                    <td>Zaidi</td>
+                                    <td>cph-bz40@stud.ek.dk</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>Walaa Hisham</td>
+                                    <td>Al-Asmar</td>
+                                    <td>cph-wa39@stud.ek.dk</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>Sofie Ina</td>
+                                    <td>Aller</td>
+                                    <td>cph-sa552@stud.ek.dk</td>
+                                    <td>7</td>
+                                </tr>
                                 <!-- <tr><td>Jacob Daniel</td><td>Nielsen</td><td>cph-jn534@stud.ek.dk</td><td>7</td></tr> -->
-                                <tr><td>Tobias Dan</td><td>Hansen</td><td>cph-th466@stud.ek.dk</td><td>7</td></tr>
-                                <tr><td>Marco</td><td>Iaria</td><td>maia1000@stud.ek.dk</td><td>7</td></tr>
-                                <tr><td>Ernad</td><td>Aliti</td><td>cph-ea198@stud.ek.dk</td><td>7</td></tr>
-                                
-                                
-                                <tr><td>Christian</td><td>Bülow-Møller</td><td>cph-cb583@stud.ek.dk</td><td>9</td></tr>
-                                <tr><td>Magnus</td><td>Elkjær</td><td>cph-me373@stud.ek.dk</td><td>9</td></tr>
-                                <tr><td>Signe Saur Kaas</td><td>Albertsen</td><td>cph-sa550@stud.ek.dk</td><td>9</td></tr>
-                                <tr><td>Malte Mats</td><td>Wachter</td><td>cph-mw283@stud.ek.dk</td><td>9</td></tr>
-                                <tr><td>Mads Engelhardt</td><td>Hansen</td><td>cph-mh1363@stud.ek.dk</td><td>10</td></tr>
-                                <tr><td>Cornelia Clara</td><td>Leth</td><td>cph-cl475@stud.ek.dk</td><td>10</td></tr>
-                                <tr><td>Oliver Sørup</td><td>Opfermann</td><td>cph-oo233@stud.ek.dk</td><td>10</td></tr>
-                                <tr><td>Katrine Bak</td><td>Rusbjerg</td><td>cph-kr283@stud.ek.dk</td><td>10</td></tr>
-                                <tr><td>Emma Stott</td><td>Flygstrup</td><td>cph-ef183@stud.ek.dk</td><td>11</td></tr>
-                                <tr><td>Albert Profit</td><td>Gaub-Jakobsen</td><td>cph-ag279@stud.ek.dk</td><td>11</td></tr>
-                                <tr><td>Freja Dahl</td><td>Jørgensen</td><td>cph-fj172@stud.ek.dk</td><td>11</td></tr>
-                                <tr><td>Ida Grabenthin Kaagaard</td><td>Kristensen</td><td>cph-ik96@stud.ek.dk</td><td>11</td></tr>
-                                <tr><td>Sarah Mathilde</td><td>Iversen</td><td>cph-si118@stud.ek.dk</td><td>12</td></tr>
-                                <tr><td>Christian Elkjær</td><td>Christensen</td><td>cph-cc345@stud.ek.dk</td><td>12</td></tr>
+                                <tr>
+                                    <td>Tobias Dan</td>
+                                    <td>Hansen</td>
+                                    <td>cph-th466@stud.ek.dk</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>Marco</td>
+                                    <td>Iaria</td>
+                                    <td>maia1000@stud.ek.dk</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>Ernad</td>
+                                    <td>Aliti</td>
+                                    <td>cph-ea198@stud.ek.dk</td>
+                                    <td>7</td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>Christian</td>
+                                    <td>Bülow-Møller</td>
+                                    <td>cph-cb583@stud.ek.dk</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>Magnus</td>
+                                    <td>Elkjær</td>
+                                    <td>cph-me373@stud.ek.dk</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>Signe Saur Kaas</td>
+                                    <td>Albertsen</td>
+                                    <td>cph-sa550@stud.ek.dk</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>Malte Mats</td>
+                                    <td>Wachter</td>
+                                    <td>cph-mw283@stud.ek.dk</td>
+                                    <td>9</td>
+                                </tr>
+                                <tr>
+                                    <td>Mads Engelhardt</td>
+                                    <td>Hansen</td>
+                                    <td>cph-mh1363@stud.ek.dk</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Cornelia Clara</td>
+                                    <td>Leth</td>
+                                    <td>cph-cl475@stud.ek.dk</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Oliver Sørup</td>
+                                    <td>Opfermann</td>
+                                    <td>cph-oo233@stud.ek.dk</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Katrine Bak</td>
+                                    <td>Rusbjerg</td>
+                                    <td>cph-kr283@stud.ek.dk</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>Emma Stott</td>
+                                    <td>Flygstrup</td>
+                                    <td>cph-ef183@stud.ek.dk</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>Albert Profit</td>
+                                    <td>Gaub-Jakobsen</td>
+                                    <td>cph-ag279@stud.ek.dk</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>Freja Dahl</td>
+                                    <td>Jørgensen</td>
+                                    <td>cph-fj172@stud.ek.dk</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>Ida Grabenthin Kaagaard</td>
+                                    <td>Kristensen</td>
+                                    <td>cph-ik96@stud.ek.dk</td>
+                                    <td>11</td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Mathilde</td>
+                                    <td>Iversen</td>
+                                    <td>cph-si118@stud.ek.dk</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>Christian Elkjær</td>
+                                    <td>Christensen</td>
+                                    <td>cph-cc345@stud.ek.dk</td>
+                                    <td>12</td>
+                                </tr>
                                 <!-- <tr><td>Charlotte</td><td>Silau</td><td>cph-cs617@stud.ek.dk</td><td>12</td></tr> -->
-                                <tr><td>Gunvan</td><td>Singh</td><td>cph-gs106@stud.ek.dk</td><td>12</td></tr>
-                                <tr><td>Diana Ester</td><td>Brandt Pedersen</td><td>cph-dp196@stud.ek.dk</td><td>12</td></tr>
-                                <tr><td>Waleed Saleh</td><td>Awad</td><td>cph-wa38@stud.ek.dk</td><td>13</td></tr>
-                                <tr><td>Alice</td><td>Huang</td><td>cph-ah822@stud.ek.dk</td><td>13</td></tr>
-                                <tr><td>Max Hunt</td><td>Kirkland</td><td>maki1000@stud.ek.dk</td><td>13</td></tr>
-                                <tr><td>Hanna Klittlund</td><td>Nielsen</td><td>hani1000@stud.ek.dk</td><td>13</td></tr>
-                                <tr><td>Sussi</td><td>Andersen</td><td>cph-sa547@stud.ek.dk</td><td>14</td></tr>
+                                <tr>
+                                    <td>Gunvan</td>
+                                    <td>Singh</td>
+                                    <td>cph-gs106@stud.ek.dk</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>Diana Ester</td>
+                                    <td>Brandt Pedersen</td>
+                                    <td>cph-dp196@stud.ek.dk</td>
+                                    <td>12</td>
+                                </tr>
+                                <!-- <tr><td>Waleed Saleh</td><td>Awad</td><td>cph-wa38@stud.ek.dk</td><td>13</td></tr> -->
+                                <!-- <tr><td>Alice</td><td>Huang</td><td>cph-ah822@stud.ek.dk</td><td>13</td></tr> -->
+                                <tr>
+                                    <td>Max Hunt</td>
+                                    <td>Kirkland</td>
+                                    <td>maki1000@stud.ek.dk</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>Hanna Klittlund</td>
+                                    <td>Nielsen</td>
+                                    <td>hani1000@stud.ek.dk</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>Sussi</td>
+                                    <td>Andersen</td>
+                                    <td>cph-sa547@stud.ek.dk</td>
+                                    <td>14</td>
+                                </tr>
                                 <!-- <tr><td>Søren Unger</td><td>Jørgensen</td><td>cph-sj673@stud.ek.dk</td><td>14</td></tr> -->
-                                <tr><td>Julie</td><td>Pedersen</td><td>cph-jp514@stud.ek.dk</td><td>14</td></tr>
-                                <tr><td>Yasemin</td><td>Turan</td><td>cph-yt13@stud.ek.dk</td><td>14</td></tr>
-                                <tr><td>Line Lagerbon</td><td>Carlsen</td><td>cph-lc296@stud.ek.dk</td><td>14</td></tr>
-                                <tr><td>Emilie Ellen Bruun</td><td>Enemark</td><td>cph-ee99@stud.ek.dk</td><td>15</td></tr>
-                                <tr><td>Marva</td><td>M</td><td>cph-mm810@stud.ek.dk</td><td>15</td></tr>
+                                <tr>
+                                    <td>Julie</td>
+                                    <td>Pedersen</td>
+                                    <td>cph-jp514@stud.ek.dk</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>Yasemin</td>
+                                    <td>Turan</td>
+                                    <td>cph-yt13@stud.ek.dk</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>Line Lagerbon</td>
+                                    <td>Carlsen</td>
+                                    <td>cph-lc296@stud.ek.dk</td>
+                                    <td>14</td>
+                                </tr>
+                                <tr>
+                                    <td>Emilie Ellen Bruun</td>
+                                    <td>Enemark</td>
+                                    <td>cph-ee99@stud.ek.dk</td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td>Marva</td>
+                                    <td>M</td>
+                                    <td>cph-mm810@stud.ek.dk</td>
+                                    <td>15</td>
+                                </tr>
                                 <!-- <tr><td>Viggo Emil Corneliusen</td><td>Widriksen</td><td>viwi1000@stud.ek.dk</td><td>15</td></tr> -->
-                                <tr><td>Casper Lynnerup</td><td>Ørholm</td><td>cph-co236@stud.ek.dk</td><td>15</td></tr>
-                                <tr><td>Marcus Frey</td><td>Hørkjær</td><td>cph-mh1362@stud.ek.dk</td><td>16</td></tr>
-                                <tr><td>Nanna Charlotte Christine</td><td>Lender</td><td>cph-nl73@stud.ek.dk</td><td>16</td></tr>
-                                <tr><td>Paulina Anna Maxa</td><td>Warmind</td><td>cph-pw93@stud.ek.dk</td><td>16</td></tr>
-                                <tr><td>Abdikheyr Mohamed</td><td>Abdirahman</td><td>abab1001@stud.ek.dk</td><td>16</td></tr>
-                                <tr><td>Annika</td><td>Rysgaard</td><td>cph-ar429@stud.ek.dk</td><td>17</td></tr>
-                                <tr><td>Simone Julie Bloch</td><td>Jessen</td><td>cph-sj672@stud.ek.dk</td><td>17</td></tr>
-                                <tr><td>Benjamin Barratt</td><td>Lassen</td><td>cph-bl206@stud.ek.dk</td><td>17</td></tr>
-                                <tr><td>Pernille</td><td>Nielsen</td><td>cph-pn202@stud.ek.dk</td><td>17</td></tr>
-                                <tr><td>Henriette Tatiana</td><td>Eisner</td><td>cph-he95@stud.ek.dk</td><td>18</td></tr>
-                                <tr><td>Ammar Abbed</td><td>Aziz</td><td>cph-aa670@stud.ek.dk</td><td>18</td></tr>
-                                <tr><td>Esben Lind</td><td>Bengtson</td><td>cph-eb228@stud.ek.dk</td><td>18</td></tr>
-                                <tr><td>Simon Bittel</td><td>Mørk</td><td>cph-sm603@stud.ek.dk</td><td>18</td></tr>
-                                <tr><td>Tanja</td><td>Skaaning</td><td>cph-ts418@stud.ek.dk</td><td>19</td></tr>
-                                <tr><td>Natascha Renée</td><td>Ankersen</td><td>cph-na291@stud.ek.dk</td><td>19</td></tr>
-                                <tr><td>William</td><td>Jønsson</td><td>cph-wj128@stud.ek.dk</td><td>19</td></tr>
+                                <tr>
+                                    <td>Casper Lynnerup</td>
+                                    <td>Ørholm</td>
+                                    <td>cph-co236@stud.ek.dk</td>
+                                    <td>15</td>
+                                </tr>
+                                <tr>
+                                    <td>Marcus Frey</td>
+                                    <td>Hørkjær</td>
+                                    <td>cph-mh1362@stud.ek.dk</td>
+                                    <td>16</td>
+                                </tr>
+                                <tr>
+                                    <td>Nanna Charlotte Christine</td>
+                                    <td>Lender</td>
+                                    <td>cph-nl73@stud.ek.dk</td>
+                                    <td>16</td>
+                                </tr>
+                                <tr>
+                                    <td>Paulina Anna Maxa</td>
+                                    <td>Warmind</td>
+                                    <td>cph-pw93@stud.ek.dk</td>
+                                    <td>16</td>
+                                </tr>
+                                <tr>
+                                    <td>Abdikheyr Mohamed</td>
+                                    <td>Abdirahman</td>
+                                    <td>abab1001@stud.ek.dk</td>
+                                    <td>16</td>
+                                </tr>
+                                <tr>
+                                    <td>Annika</td>
+                                    <td>Rysgaard</td>
+                                    <td>cph-ar429@stud.ek.dk</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td>Simone Julie Bloch</td>
+                                    <td>Jessen</td>
+                                    <td>cph-sj672@stud.ek.dk</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td>Benjamin Barratt</td>
+                                    <td>Lassen</td>
+                                    <td>cph-bl206@stud.ek.dk</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td>Pernille</td>
+                                    <td>Nielsen</td>
+                                    <td>cph-pn202@stud.ek.dk</td>
+                                    <td>17</td>
+                                </tr>
+                                <tr>
+                                    <td>Henriette Tatiana</td>
+                                    <td>Eisner</td>
+                                    <td>cph-he95@stud.ek.dk</td>
+                                    <td>18</td>
+                                </tr>
+                                <tr>
+                                    <td>Ammar Abbed</td>
+                                    <td>Aziz</td>
+                                    <td>cph-aa670@stud.ek.dk</td>
+                                    <td>18</td>
+                                </tr>
+                                <tr>
+                                    <td>Esben Lind</td>
+                                    <td>Bengtson</td>
+                                    <td>cph-eb228@stud.ek.dk</td>
+                                    <td>18</td>
+                                </tr>
+                                <tr>
+                                    <td>Simon Bittel</td>
+                                    <td>Mørk</td>
+                                    <td>cph-sm603@stud.ek.dk</td>
+                                    <td>18</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanja</td>
+                                    <td>Skaaning</td>
+                                    <td>cph-ts418@stud.ek.dk</td>
+                                    <td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>Natascha Renée</td>
+                                    <td>Ankersen</td>
+                                    <td>cph-na291@stud.ek.dk</td>
+                                    <td>19</td>
+                                </tr>
+                                <tr>
+                                    <td>William</td>
+                                    <td>Jønsson</td>
+                                    <td>cph-wj128@stud.ek.dk</td>
+                                    <td>19</td>
+                                </tr>
                                 <!-- <tr><td>Nicolai Nøhr</td><td>Madsen</td><td>cph-nm262@stud.ek.dk</td><td>19</td></tr> -->
-                                <tr><td>Maj Ølting</td><td>Sauter</td><td>cph-ms1414@stud.ek.dk</td><td>20</td></tr>
-                                <tr><td>Amalia</td><td>Ahlers</td><td>cph-aa659@stud.ek.dk</td><td>20</td></tr>
-                                <tr><td>Lonni Ohrberg</td><td>Nielsen</td><td>cph-ln379@stud.ek.dk</td><td>20</td></tr>
-                                <tr><td>Rasmus Dahlgren</td><td>Laustrup</td><td>cph-rl204@stud.ek.dk</td><td>20</td></tr>
-                                <tr><td>Sophie Mølgaard-</td><td>Jørgensen</td><td>cph-sm599@stud.ek.dk</td><td>20</td></tr>
+                                <tr>
+                                    <td>Maj Ølting</td>
+                                    <td>Sauter</td>
+                                    <td>cph-ms1414@stud.ek.dk</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Amalia</td>
+                                    <td>Ahlers</td>
+                                    <td>cph-aa659@stud.ek.dk</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Lonni Ohrberg</td>
+                                    <td>Nielsen</td>
+                                    <td>cph-ln379@stud.ek.dk</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Rasmus Dahlgren</td>
+                                    <td>Laustrup</td>
+                                    <td>cph-rl204@stud.ek.dk</td>
+                                    <td>20</td>
+                                </tr>
+                                <tr>
+                                    <td>Sophie Mølgaard-</td>
+                                    <td>Jørgensen</td>
+                                    <td>cph-sm599@stud.ek.dk</td>
+                                    <td>20</td>
+                                </tr>
                                 <!-- <tr><td>Jesper</td><td>Antonsen</td><td>cph-ja460@stud.ek.dk</td><td>21</td></tr> -->
-                                <tr><td>Mirjam Minanda Dorothea</td><td>Bijlsma-Riaz</td><td>cph-mb1134@stud.ek.dk</td><td>21</td></tr>
-                                <tr><td>Semrah</td><td>Hussain</td><td>cph-sh592@stud.ek.dk</td><td>21</td></tr>
-                                <tr><td>Katja Jeppesen</td><td>Hansen</td><td>cph-kh519@stud.ek.dk</td><td>21</td></tr>
+                                <tr>
+                                    <td>Mirjam Minanda Dorothea</td>
+                                    <td>Bijlsma-Riaz</td>
+                                    <td>cph-mb1134@stud.ek.dk</td>
+                                    <td>21</td>
+                                </tr>
+                                <tr>
+                                    <td>Semrah</td>
+                                    <td>Hussain</td>
+                                    <td>cph-sh592@stud.ek.dk</td>
+                                    <td>21</td>
+                                </tr>
+                                <tr>
+                                    <td>Katja Jeppesen</td>
+                                    <td>Hansen</td>
+                                    <td>cph-kh519@stud.ek.dk</td>
+                                    <td>21</td>
+                                </tr>
                                 <!-- <tr><td>Victor Nordestgaard</td><td>Kubel</td><td>cph-vk129@stud.ek.dk</td><td>21</td></tr> -->
                             </tbody>
                         </table>
@@ -181,4 +566,5 @@
         });
     </script>
 </body>
+
 </html>
