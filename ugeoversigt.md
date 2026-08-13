@@ -2,7 +2,7 @@
 
 Kursus: [Moodle id=46](https://online.cphbusiness.dk/course/view.php?id=46)
 
-15 undervisningsuger (36–50). Ingen efterårsferie. 1. interne er **30 ECTS** (Metode, Branchekendskab, Mikro, EØ finansiering, EØ optimering, Statistik). EØ-optimering indgår i den samlede eksamensopgave — ikke særskilt 2-timers skriftlig.
+15 undervisningsuger (36–50). Ingen efterårsferie. 1. interne er **30 ECTS** (Metode, Branchekendskab, Mikro, EØ finansiering, EØ optimering, Statistik).
 
 ## Pensum-bøger
 
@@ -133,7 +133,11 @@ Kopieret fra QUIZ_ALLE (`quiz.tepedu.dk`) ind i bøgernes `/quiz`. Originalen er
 
 ## Eksamen (Eksamensklar)
 
-- Kick-off: 23/12 2026 kl. 9:00 i Thomas's Zoom rum
-- Briefing: 6/1 2027 kl. 9:00 i Thomas's Zoom rum
+Datoer er tentative. Endelige datoer og tider udmeldes på WISEflow af eksamenskontoret.
+
+- Kick-off: onsdag 23. december 2026 kl. 09:00 i Thomas's Zoom-rum
+- Eksamensbriefing: onsdag 6. januar 2027 kl. 09:00 i Thomas's Zoom-rum
+- Ordinær aflevering: tirsdag 22. december 2026 kl. 08:30
+- Ordinær mundtlig: 7.–8. januar, 11.–15. januar, 18.–22. januar og 25. januar 2027
 - Zoom: https://cphbusiness.zoom.us/j/7577575555
 - Side: https://online.cphbusiness.dk/mod/page/view.php?id=9509
