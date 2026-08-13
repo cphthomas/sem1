@@ -14,9 +14,10 @@ Kursus: [Moodle id=46](https://online.cphbusiness.dk/course/view.php?id=46)
 
 ## OLA (tilsigtet fordeling)
 
-- **OLA 1 / Tema 1:** uge 36–39
-- **OLA 2 / Tema 2:** uge 40–45
-- **OLA 3 / Tema 3:** uge 46–49 (uge 50 er repetition, ingen tema-del)
+- **OLA 1 / Tema 1:** uge 36–39. Frist: tirsdag 6. oktober 2026 kl. 08.00
+- **OLA 2 / Tema 2:** syv uger (uge 40–46). Frist: tirsdag 24. november 2026 kl. 08.00
+- **OLA 3 / Tema 3:** starter uge 47 (uge 47–49). Frist: tirsdag 15. december 2026 kl. 08.00
+- **Uge 50:** repetition 1. interne — indgår **ikke** i OLA 3
 
 ## ECTS-uger
 
@@ -89,31 +90,31 @@ Kursus: [Moodle id=46](https://online.cphbusiness.dk/course/view.php?id=46)
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1052
 - Filer: `10_*`
 
-## Tema 3
-
 ### Uge 46 (9/11–15/11) — EØ: overskud, omkostninger, pris, elasticitet
 
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1053
 - Filer: `11_*`
-- Tema 3 del 1
+- Sidste uge i OLA-hæfte 2 (Tema 2 del 7)
+
+## Tema 3
 
 ### Uge 47 (16/11–22/11) — EØ: markedsformer og optimering
 
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1054
 - Filer: `12_*`
-- Tema 3 del 2 (case, ikke 2-timers eksamen)
+- Første uge i OLA 3 (Tema 3 del 1)
 
 ### Uge 48 (23/11–29/11) — EØ: MFB og knap kapacitet
 
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1055
 - Filer: `13_*`
-- Tema 3 del 3
+- Tema 3 del 2
 
 ### Uge 49 (30/11–6/12) — EØ: bidragskalkulation, fordelingskalkulation, ABC
 
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1267
 - Filer: `14_*`
-- Tema 3 del 4
+- Tema 3 del 3
 
 ### Uge 50 (7/12–13/12) — Repetition 1. interne
 
