@@ -271,22 +271,55 @@ button#downloadICS:hover {
     display: inline-block;
     text-decoration: none;
     color: white;
+    font-style: normal;
     background: rgba(150, 150, 151, 0.5);
-    padding: 10px;
+    padding: 10px 2.5rem 10px 10px;
     width: 100%;
+    margin-bottom: 0.45rem;
+}
+
+.effectLinks::before {
+    content: "\f08e";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    font-size: 0.9em;
+    opacity: 0.7;
+    pointer-events: none;
+    transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.22s ease;
+}
+
+.effectLinks:hover::before {
+    transform: translateY(-50%) translate(5px, -5px) scale(1.12);
+    opacity: 1;
 }
 
 .effectLinks::after {
     content: attr(data-replace);
     position: absolute;
     left: 0;
-    padding-left: 10px;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 2.5rem 10px 10px;
     transform-origin: 100% 50%;
     transform: translate3d(200%, 0, 0);
     transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.3s ease;
     color: white;
     background: rgba(21, 23, 26, 1);
     opacity: 0;
+    z-index: 1;
 }
 
 .effectLinks:hover::after {
@@ -647,6 +680,18 @@ table {
     cursor: pointer;
 }
 
+.link-stack {
+    margin: 0.1rem 0 0.85rem;
+}
+
+.link-stack .effectLinks {
+    display: block;
+}
+
+.link-stack .effectLinks:last-child {
+    margin-bottom: 0;
+}
+
 @media (max-width: 576px) {
     .tema-week-list li {
         grid-template-columns: 2.4rem 1fr;
@@ -688,6 +733,14 @@ table {
         transition: none;
         transform: scaleX(1);
         opacity: 1;
+    }
+
+    .effectLinks::before {
+        transition: none;
+    }
+
+    .effectLinks:hover::before {
+        transform: translateY(-50%);
     }
 }
 .tema-badge {
