@@ -539,6 +539,89 @@ table {
     border-color: #3d4a7a;
 }
 
+.timeline-item u,
+.timeline-item h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 0.14rem;
+    transition: color 0.22s ease;
+}
+
+.timeline-item u::after,
+.timeline-item h5::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0.28);
+    transform-origin: left center;
+    opacity: 0.4;
+    transition:
+        transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.22s ease,
+        height 0.22s ease,
+        background-color 0.22s ease;
+}
+
+.timeline-item u:hover,
+.timeline-item h5:hover {
+    color: #3d4a7a;
+}
+
+.timeline-item u:hover::after,
+.timeline-item h5:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+    height: 2px;
+    background: #3d4a7a;
+}
+
+.deadline-list {
+    margin-top: 0.55rem;
+}
+
+.deadline-list li {
+    display: grid;
+    grid-template-columns: minmax(9.5rem, auto) 1fr;
+    gap: 0.25rem 0.9rem;
+    align-items: center;
+    border-left: 2px solid rgba(61, 74, 122, 0.22);
+}
+
+.deadline-list li::before {
+    left: 10px;
+}
+
+.deadline-list li:hover {
+    background: rgba(61, 74, 122, 0.12);
+    border-left-color: #3d4a7a;
+}
+
+.deadline-when {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.deadline-what {
+    font-weight: 400;
+}
+
+.timeline-item .chapter-hover-list a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.timeline-item .chapter-hover-list li:has(> a) {
+    cursor: pointer;
+}
+
 @media (max-width: 576px) {
     .tema-week-list li {
         grid-template-columns: 2.4rem 1fr;
@@ -551,6 +634,10 @@ table {
 
     .tema-week-list .week-topic {
         grid-column: 2;
+    }
+
+    .deadline-list li {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -569,6 +656,13 @@ table {
     .timeline-item .table:hover,
     .timeline-item .table tbody tr:hover {
         transform: none;
+    }
+
+    .timeline-item u::after,
+    .timeline-item h5::after {
+        transition: none;
+        transform: scaleX(1);
+        opacity: 1;
     }
 }
 .tema-badge {
