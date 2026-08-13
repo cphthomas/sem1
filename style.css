@@ -544,10 +544,35 @@ table {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     position: relative;
-    padding-bottom: 0.14rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: 1.2rem 0 0.45rem;
+    padding-bottom: 0.18rem;
+    line-height: 1.35;
     transition: color 0.22s ease;
+}
+
+.timeline-item > u:first-child,
+.timeline-item > h5:first-child,
+.timeline-item i > u:first-child,
+.timeline-item i > h5:first-child,
+.timeline-item p > u:first-child,
+.timeline-item p > h5:first-child {
+    margin-top: 0.15rem;
+}
+
+.timeline-item hr {
+    margin: 1.35rem 0;
+    border: 0;
+    border-top: 1px solid rgba(61, 74, 122, 0.16);
+}
+
+.timeline-item h5 + p,
+.timeline-item u + p {
+    margin: 0 0 1.1rem;
+    line-height: 1.65;
 }
 
 .timeline-item u::after,
