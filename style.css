@@ -11,9 +11,11 @@
 .iframe-container {
     position: relative;
     width: 100%;
+    max-width: 100%;
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .iframe-container iframe {
@@ -22,6 +24,12 @@
     left: 0;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    border: 0;
+}
+
+.timeline-item .iframe-container {
+    margin: 0.75rem 0 1.25rem;
 }
 
 
@@ -393,6 +401,175 @@ table {
 .tema-table td:nth-child(2) {
     white-space: nowrap;
     font-weight: 500;
+}
+
+.aflevering-dato {
+    margin-top: 1rem;
+    margin-bottom: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(61, 74, 122, 0.18);
+}
+
+.timeline-item .chapter-hover-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.35rem 0 0;
+    position: relative;
+}
+
+.timeline-item .chapter-hover-list::before {
+    display: none;
+}
+
+.timeline-item .chapter-hover-list li {
+    position: relative;
+    padding: 0.35rem 0.55rem 0.35rem calc(14px + 0.7rem);
+    margin-bottom: 0.15rem;
+    font-weight: 400;
+    overflow: visible;
+    cursor: default;
+    border-radius: 0;
+    transition:
+        font-weight 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.22s ease,
+        background-color 0.22s ease,
+        transform 0.22s ease;
+}
+
+.timeline-item .chapter-hover-list li::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    transform: rotate(0deg) scale(1);
+    transition:
+        border-radius 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.3s ease;
+    counter-increment: none;
+    box-shadow: none;
+    border: none;
+    z-index: 1;
+    line-height: 0;
+    font-size: 0;
+}
+
+.timeline-item .chapter-hover-list li:hover {
+    font-weight: 600;
+    color: #15171a;
+    background: rgba(61, 74, 122, 0.08);
+    transform: translateX(3px);
+}
+
+.timeline-item .chapter-hover-list li:hover .week-cal {
+    color: inherit;
+}
+
+.timeline-item .chapter-hover-list li:hover::before {
+    border-radius: 0;
+    transform: rotate(180deg) scale(1.2);
+    opacity: 0.85;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+}
+
+.tema-week-list {
+    margin-top: 0.15rem;
+}
+
+.tema-week-list li {
+    display: grid;
+    grid-template-columns: 2.6rem minmax(7.2rem, auto) 1fr;
+    gap: 0.35rem 0.85rem;
+    align-items: center;
+}
+
+.tema-week-list .week-code {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 0.92rem;
+}
+
+.tema-week-list .week-cal {
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 0.92rem;
+    color: #4a5168;
+}
+
+.tema-week-list .week-topic {
+    font-size: 0.95rem;
+}
+
+.timeline-item .table {
+    box-shadow: 0 2px 12px rgba(15, 18, 22, 0.04);
+    transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.timeline-item .table:hover {
+    box-shadow: 0 14px 32px rgba(15, 18, 22, 0.18);
+    transform: translateY(-1px);
+}
+
+.timeline-item .table tbody tr {
+    transition:
+        background-color 0.22s ease,
+        color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+}
+
+.timeline-item .table tbody tr:hover {
+    background-color: #3d4a7a !important;
+    color: #fff;
+    transform: translateX(3px);
+    box-shadow: 0 6px 16px rgba(61, 74, 122, 0.22);
+}
+
+.timeline-item .table tbody tr:hover td {
+    border-color: #3d4a7a;
+}
+
+@media (max-width: 576px) {
+    .tema-week-list li {
+        grid-template-columns: 2.4rem 1fr;
+        gap: 0.15rem 0.7rem;
+    }
+
+    .tema-week-list .week-cal {
+        grid-column: 2;
+    }
+
+    .tema-week-list .week-topic {
+        grid-column: 2;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-item .chapter-hover-list li,
+    .timeline-item .chapter-hover-list li::before,
+    .timeline-item .table,
+    .timeline-item .table tbody tr {
+        transition: none;
+    }
+
+    .timeline-item .chapter-hover-list li:hover::before {
+        transform: scale(1.1);
+    }
+
+    .timeline-item .table:hover,
+    .timeline-item .table tbody tr:hover {
+        transform: none;
+    }
 }
 .tema-badge {
     display: inline-block;
