@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEMA 2.3</title>
+    <title>TEMA 2.3 Løsningsforslag</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Custom Styles -->
@@ -38,7 +38,7 @@
                             <p><i>
 
                                     <img src="https://storage.googleapis.com/tepedu/sem1/images/bolig18.jpg" width="100%">
-                                    <h1>Temaprojekt-delen</h1>
+                                    <h1>Temaprojekt-delen<br>LØSNINGSFORSLAG</h1>
                                     <u>Formål:</u><br>
                                     Formålet med temaprojektet er at give dig kompetence i at bruge, hvad du har lært i
                                     denne uge, i praksis. <br><br>
@@ -64,7 +64,7 @@
 
                             <div class="timeline-arrow"></div>
                             <article>
-                                <h1>Investeringscase: EDC Living Dragør overvejer udvidelse</h1>
+                                <h1>Investeringscase: EDC Living Dragør overvejer udvidelse<br>LØSNINGSFORSLAG</h1>
 
 
 
@@ -154,6 +154,22 @@
                                 <li>Hvad bliver den interne rente? </li>
                             </ol>
                             </p>
+                            <hr>
+                            <h3>Løsningsforslag</h3>
+                            <p>
+                                Initiel investering (ekskl. sunk cost på 100.000 kr.): 1.530.000 kr.<br>
+                                Årlige nettobetalinger: 600.000 kr.<br>
+                                Scrapværdi: 200.000 kr. &nbsp; n = 10 år &nbsp; r = 10%.<br>
+                                Kapitalværdi (fra appen): 2.233.848,92 kr.
+                            </p>
+                            <ol>
+                                <li>Kapitaltjenesten er 236.451 kr. pr. år.
+                                    <br><span style="color: green;">Kapitaltjenesten er den årlige kapitalomkostning ved investeringen: I · CRF − S · SFF, hvor CRF = r(1+r)<sup>n</sup>/((1+r)<sup>n</sup>−1) og SFF = r/((1+r)<sup>n</sup>−1). Med r = 10% og n = 10 fås CRF = 0,162745 og SFF = 0,062745, så 1.530.000 · 0,162745 − 200.000 · 0,062745 = 236.451 kr. Det er samtidig den årlige nettobetaling, der netop giver kapitalværdi 0.</span></li>
+                                <li>Tilbagebetalingstid uden rentekorrektion: 2,55 år. Med rentekorrektion: 3,09 år.
+                                    <br><span style="color: green;">Uden rente: 1.530.000 / 600.000 = 2,55 år. Med 10% diskontering summeres nutidsværdien af de årlige 600.000 kr., indtil 1.530.000 kr. er indhentet (scrap medtages ikke). Efter 3 år er den akkumulerede nutidsværdi ca. 1.492.111 kr., og restbeløbet indhentes i år 4, svarende til 3,09 år.</span></li>
+                                <li>Intern rente: 37,83%.
+                                    <br><span style="color: green;">IRR er den kalkulationsrente, der giver kapitalværdi = 0. Appen viser intern rente 37,83%. Investeringen er klart lønsom, da IRR ligger væsentligt over kalkulationsrenten på 10%.</span></li>
+                            </ol>
                         </li>
 
                         <li class="timeline-item bg-white ml-3 p-4 shadow">
@@ -176,6 +192,18 @@
                                 </a>
 
                             </p>
+                            <hr>
+                            <h3>Løsningsforslag</h3>
+                            <p>Kritisk værdi = den værdi, der giver kapitalværdi 0 (Målsøgning i Excel). Den kritiske
+                                årlige nettobetaling er 236.451 kr.</p>
+                            <ol>
+                                <li>Kritisk scrapværdi: ca. −5.594.029 kr.
+                                    <br><span style="color: green;">Matematisk skal scrapværdien være stærkt negativ, før kapitalværdien bliver 0. Fortolkning: investeringen er så lønsom, at selv scrap = 0 stadig giver en stor positiv kapitalværdi (ca. 2,16 mio. kr.). Der findes derfor ingen realistisk (ikke-negativ) scrapværdi, der gør investeringen ulønsom.</span></li>
+                                <li>Kritisk årlig husleje: ca. 723.549 kr.
+                                    <br><span style="color: green;">Årlige nettobetalinger = 960.000 − husleje. Sæt nettobetalingen til 236.451 kr.: husleje = 960.000 − 236.451 = 723.549 kr. Huslejen kan altså stige fra 360.000 kr. til ca. 723.549 kr., før investeringen bliver marginal.</span></li>
+                                <li>Kritiske årlige personaleomkostninger: ca. 2.163.549 kr.
+                                    <br><span style="color: green;">Årlige nettobetalinger = 2.400.000 − personaleomkostninger. Ved nettobetaling 236.451 kr. fås personaleomkostninger = 2.400.000 − 236.451 = 2.163.549 kr. (mod 1.800.000 kr. i grundscenariet).</span></li>
+                            </ol>
                         </li>
 
                         <li class="timeline-item bg-white ml-3 p-4 shadow">
@@ -199,6 +227,16 @@
                                 </a>
 
                             </p>
+                            <hr>
+                            <h3>Løsningsforslag</h3>
+                            <ol>
+                                <li>Kritisk antal årlige boligsalg: ca. 43,9 (afrundet 44).
+                                    <br><span style="color: green;">Nettobetaling = 60.000 · q − 2.400.000. Sæt lig 236.451 kr.: q = (236.451 + 2.400.000) / 60.000 = 43,94. Investeringen tåler et fald fra 50 til ca. 44 årlige salg.</span></li>
+                                <li>Kritisk gennemsnitligt salær: ca. 67.729 kr.
+                                    <br><span style="color: green;">Nettobetaling = 50 · salær − 3.150.000. Sæt lig 236.451 kr.: salær = (236.451 + 3.150.000) / 50 = 67.729 kr. (mod 75.000 kr. i grundscenariet).</span></li>
+                                <li>Kritiske gennemsnitlige direkte omkostninger pr. salg: ca. 22.271 kr.
+                                    <br><span style="color: green;">Nettobetaling = 1.350.000 − 50 · d. Sæt lig 236.451 kr.: d = (1.350.000 − 236.451) / 50 = 22.271 kr. Direkte omkostninger kan stige fra 15.000 kr. til ca. 22.271 kr. pr. salg, før investeringen bliver marginal.</span></li>
+                            </ol>
                         </li>
 
                        

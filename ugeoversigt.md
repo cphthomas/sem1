@@ -120,7 +120,12 @@ Kursus: [Moodle id=46](https://online.cphbusiness.dk/course/view.php?id=46)
 
 - Moodle: https://online.cphbusiness.dk/course/section.php?id=1305
 - Filer: `15_intro.html`
-- Gammel 1. interne 2022 + bilag. Ingen OLA-del.
+- Repetition: udvalgte svære quizzer (regression, IF, optimering). Ingen case eller temaprojekt. Ikke OLA 3.
+
+### Uge 51 (14/12–20/12) — Eksamensbriefing
+
+- Moodle: https://online.cphbusiness.dk/course/section.php?id=1268
+- Indgår ikke i et tema og ikke i OLA 3.
 
 ## Quizzer
 
