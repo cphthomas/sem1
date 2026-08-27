@@ -1,571 +1,1489 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teams Oversigt</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        /* Remove custom styles that conflict with Bootstrap or white background */
-        body {
-            color: #212529;
-            /* Default text color for white background */
-        }
-
-        .table td,
-        .table th {
-            color: #212529;
-            /* Ensure table text is dark on white background */
-        }
-
-        .team-color-1 {
-            background-color: #ffffff !important;
-            /* White */
-        }
-
-        .team-color-2 {
-            background-color: #e9ecef !important;
-            /* Slightly darker grey */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teams Oversigt — FIN E26</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    :root {
+      --ink: #15171a;
+      --muted: #6b6b6b;
+      --line: #d4d4d4;
+      --accent: #808080;
+      --accent-soft: #efefef;
+      --hover-bg: #f5f5f5;
+    }
+    *, *::before, *::after { border-radius: 0 !important; }
+    body {
+      color: var(--ink);
+      background: #f0f0f0;
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+    }
+    .hero {
+      background: #15171a;
+      color: #d7d7d7;
+      padding: 1.75rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(15, 18, 22, 0.04);
+    }
+    .hero h1 { margin: 0 0 .35rem; font-size: 1.75rem; color: #fff; }
+    .hero p { margin: 0; color: #a8a8a8; }
+    .toc {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc a {
+      display: inline-block; padding: .25rem .55rem;
+      border: 1px solid var(--line);
+      background: #fff; color: var(--ink); text-decoration: none; font-size: .85rem;
+      transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+    }
+    .toc a:hover {
+      border-color: var(--accent); color: #15171a;
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+    }
+    .team-card {
+      background: #fff; border: 1px solid var(--line);
+      border-left: 4px solid #a8a8a8;
+      padding: 1rem 1.1rem; margin-bottom: 1rem;
+      box-shadow: 0 2px 12px rgba(15, 18, 22, 0.04);
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease, background .25s ease;
+    }
+    .team-card:hover {
+      border-color: #808080;
+      box-shadow: 0 8px 24px rgba(15, 18, 22, 0.12);
+      transform: translateY(-3px);
+      background: #fafafa;
+    }
+    .team-card header {
+      display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+      margin-bottom: .5rem;
+    }
+    .team-card h2 { margin: 0; font-size: 1.2rem; color: var(--ink); }
+    .count { color: var(--muted); font-size: .85rem; }
+    .common { font-size: .9rem; color: var(--muted); margin-bottom: .75rem; }
+    .prefs { font-size: .78rem; color: #555; max-width: 28rem; }
+    .table td, .table th { color: var(--ink); vertical-align: top; }
+    .team-card tbody tr {
+      transition: background .2s ease, box-shadow .2s ease;
+    }
+    .team-card tbody tr:hover {
+      background: var(--hover-bg) !important;
+      box-shadow: inset 3px 0 0 #808080;
+    }
+    .team-card tbody tr:hover a { color: #15171a; font-weight: 600; }
+    .team-color-1 { background-color: #ffffff !important; }
+    .team-color-2 { background-color: #e9ecef !important; }
+    .section-title { margin: 2rem 0 1rem; font-size: 1.25rem; color: var(--ink); }
+    a { color: #4a5168; }
+    a:hover { color: #15171a; }
+  </style>
 </head>
-
 <body data-page-id="tema">
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-lg-7 mx-auto">
-                <ul class="timeline">
-                    <li class="timeline-item bg-white ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h1 style="text-align: center;">Teams Oversigt</h1>
-                        <table class="table table-sm table-small-font table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Fornavn</th>
-                                    <th>Efternavn</th>
-                                    <th>E-mailadresse</th>
-                                    <th>Team</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Isabella Maria</td>
-                                    <td>Lund Kühne</td>
-                                    <td>cph-ik95@stud.ek.dk</td>
-                                    <td>1</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Martine</td>
-                                    <td>Saadoun</td>
-                                    <td>cph-ms1408@stud.ek.dk</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>Emily Anastasia</td>
-                                    <td>Toft</td>
-                                    <td>cph-et135@stud.ek.dk</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>Jaser Ali Abdul-Hamed</td>
-                                    <td>Al-Kerwie</td>
-                                    <td>cph-ja488@stud.ek.dk</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Thor</td>
-                                    <td>Jensen</td>
-                                    <td>cph-tj417@stud.ek.dk</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Alexander Louis</td>
-                                    <td>Kjærgaard</td>
-                                    <td>alkj1000@stud.ek.dk</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Deborah Marie Veronica</td>
-                                    <td>Laier Lyster</td>
-                                    <td>cph-dj24@stud.ek.dk</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Mehlika</td>
-                                    <td>Cakiroglu</td>
-                                    <td>meca1000@stud.ek.dk</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>Tilde Subcleff</td>
-                                    <td>Jensen</td>
-                                    <td>cph-tj415@stud.ek.dk</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>Kasper</td>
-                                    <td>Madsen</td>
-                                    <td>cph-km246@stud.ek.dk</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>Arnleyg</td>
-                                    <td>Samuelsen</td>
-                                    <td>cph-as843@stud.ek.dk</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>Jeppe Rode</td>
-                                    <td>Andreasen</td>
-                                    <td>cph-ja490@stud.ek.dk</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Mia Subcleff</td>
-                                    <td>Jensen</td>
-                                    <td>cph-mj1265@stud.ek.dk</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Sebastian Wyrwik</td>
-                                    <td>Karlsson</td>
-                                    <td>cph-sk560@stud.ek.dk</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Louise</td>
-                                    <td>Rej-Kirkebjerg</td>
-                                    <td>cph-lr324@stud.ek.dk</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>Amro Rami Mohammed</td>
-                                    <td>Alhamalawi</td>
-                                    <td>cph-aa671@stud.ek.dk</td>
-                                    <td>5</td>
-                                </tr>
-                                <!-- <tr>
-                                    <td>Jónatan Ari</td>
-                                    <td>Bragason</td>
-                                    <td>cph-jb571@stud.ek.dk</td>
-                                    <td>5</td>
-                                </tr> -->
-                                <tr>
-                                    <td>Anahita</td>
-                                    <td>Douzandeh-Mobbarez</td>
-                                    <td>cph-ad320@stud.ek.dk</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>Tobias</td>
-                                    <td>Jensen</td>
-                                    <td>cph-tj416@stud.ek.dk</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>Aria</td>
-                                    <td>Paulsen</td>
-                                    <td>cph-ap489@stud.ek.dk</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>Martin</td>
-                                    <td>Staunsbjerg</td>
-                                    <td>cph-ms1230@stud.ek.dk</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>Bibi Zenat</td>
-                                    <td>Zaidi</td>
-                                    <td>cph-bz40@stud.ek.dk</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>Walaa Hisham</td>
-                                    <td>Al-Asmar</td>
-                                    <td>cph-wa39@stud.ek.dk</td>
-                                    <td>6</td>
-                                </tr>
-                                <!-- <tr>
-                                    <td>Sofie Ina</td>
-                                    <td>Aller</td>
-                                    <td>cph-sa552@stud.ek.dk</td>
-                                    <td>7</td>
-                                </tr> -->
-                                <!-- <tr><td>Jacob Daniel</td><td>Nielsen</td><td>cph-jn534@stud.ek.dk</td><td>7</td></tr> -->
-                                <tr>
-                                    <td>Tobias Dan</td>
-                                    <td>Hansen</td>
-                                    <td>cph-th466@stud.ek.dk</td>
-                                    <td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>Marco</td>
-                                    <td>Iaria</td>
-                                    <td>maia1000@stud.ek.dk</td>
-                                    <td>7</td>
-                                </tr>
-                                <tr>
-                                    <td>Ernad</td>
-                                    <td>Aliti</td>
-                                    <td>cph-ea198@stud.ek.dk</td>
-                                    <td>7</td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>Christian</td>
-                                    <td>Bülow-Møller</td>
-                                    <td>cph-cb583@stud.ek.dk</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>Magnus</td>
-                                    <td>Elkjær</td>
-                                    <td>cph-me373@stud.ek.dk</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>Signe Saur Kaas</td>
-                                    <td>Albertsen</td>
-                                    <td>cph-sa550@stud.ek.dk</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>Malte Mats</td>
-                                    <td>Wachter</td>
-                                    <td>cph-mw283@stud.ek.dk</td>
-                                    <td>9</td>
-                                </tr>
-                                <tr>
-                                    <td>Mads Engelhardt</td>
-                                    <td>Hansen</td>
-                                    <td>cph-mh1363@stud.ek.dk</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Cornelia Clara</td>
-                                    <td>Leth</td>
-                                    <td>cph-cl475@stud.ek.dk</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Oliver Sørup</td>
-                                    <td>Opfermann</td>
-                                    <td>cph-oo233@stud.ek.dk</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Katrine Bak</td>
-                                    <td>Rusbjerg</td>
-                                    <td>cph-kr283@stud.ek.dk</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>Emma Stott</td>
-                                    <td>Flygstrup</td>
-                                    <td>cph-ef183@stud.ek.dk</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>Albert Profit</td>
-                                    <td>Gaub-Jakobsen</td>
-                                    <td>cph-ag279@stud.ek.dk</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>Freja Dahl</td>
-                                    <td>Jørgensen</td>
-                                    <td>cph-fj172@stud.ek.dk</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>Ida Grabenthin Kaagaard</td>
-                                    <td>Kristensen</td>
-                                    <td>cph-ik96@stud.ek.dk</td>
-                                    <td>11</td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Mathilde</td>
-                                    <td>Iversen</td>
-                                    <td>cph-si118@stud.ek.dk</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Christian Elkjær</td>
-                                    <td>Christensen</td>
-                                    <td>cph-cc345@stud.ek.dk</td>
-                                    <td>12</td>
-                                </tr>
-                                <!-- <tr><td>Charlotte</td><td>Silau</td><td>cph-cs617@stud.ek.dk</td><td>12</td></tr> -->
-                                <tr>
-                                    <td>Gunvan</td>
-                                    <td>Singh</td>
-                                    <td>cph-gs106@stud.ek.dk</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>Diana Ester</td>
-                                    <td>Brandt Pedersen</td>
-                                    <td>cph-dp196@stud.ek.dk</td>
-                                    <td>12</td>
-                                </tr>
-                                <!-- <tr><td>Waleed Saleh</td><td>Awad</td><td>cph-wa38@stud.ek.dk</td><td>13</td></tr> -->
-                                <!-- <tr><td>Alice</td><td>Huang</td><td>cph-ah822@stud.ek.dk</td><td>13</td></tr> -->
-                                <tr>
-                                    <td>Max Hunt</td>
-                                    <td>Kirkland</td>
-                                    <td>maki1000@stud.ek.dk</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>Hanna Klittlund</td>
-                                    <td>Nielsen</td>
-                                    <td>hani1000@stud.ek.dk</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>Tanja</td>
-                                    <td>Skaaning</td>
-                                    <td>cph-ts418@stud.ek.dk</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>Natascha Renée</td>
-                                    <td>Ankersen</td>
-                                    <td>cph-na291@stud.ek.dk</td>
-                                    <td>13</td>
-                                </tr>
-                                <tr>
-                                    <td>Sussi</td>
-                                    <td>Andersen</td>
-                                    <td>cph-sa547@stud.ek.dk</td>
-                                    <td>14</td>
-                                </tr>
-                                <!-- <tr><td>Søren Unger</td><td>Jørgensen</td><td>cph-sj673@stud.ek.dk</td><td>14</td></tr> -->
-                                <tr>
-                                    <td>Julie</td>
-                                    <td>Pedersen</td>
-                                    <td>cph-jp514@stud.ek.dk</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>Yasemin</td>
-                                    <td>Turan</td>
-                                    <td>cph-yt13@stud.ek.dk</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>Line Lagerbon</td>
-                                    <td>Carlsen</td>
-                                    <td>cph-lc296@stud.ek.dk</td>
-                                    <td>14</td>
-                                </tr>
-                                <tr>
-                                    <td>Emilie Ellen Bruun</td>
-                                    <td>Enemark</td>
-                                    <td>cph-ee99@stud.ek.dk</td>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <td>Marva</td>
-                                    <td>M</td>
-                                    <td>cph-mm810@stud.ek.dk</td>
-                                    <td>15</td>
-                                </tr>
-                                <!-- <tr><td>Viggo Emil Corneliusen</td><td>Widriksen</td><td>viwi1000@stud.ek.dk</td><td>15</td></tr> -->
-                                <tr>
-                                    <td>Casper Lynnerup</td>
-                                    <td>Ørholm</td>
-                                    <td>cph-co236@stud.ek.dk</td>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <td>Marcus Frey</td>
-                                    <td>Hørkjær</td>
-                                    <td>cph-mh1362@stud.ek.dk</td>
-                                    <td>16</td>
-                                </tr>
-                                <tr>
-                                    <td>Nanna Charlotte Christine</td>
-                                    <td>Lender</td>
-                                    <td>cph-nl73@stud.ek.dk</td>
-                                    <td>16</td>
-                                </tr>
-                                <tr>
-                                    <td>Paulina Anna Maxa</td>
-                                    <td>Warmind</td>
-                                    <td>cph-pw93@stud.ek.dk</td>
-                                    <td>16</td>
-                                </tr>
-                                <tr>
-                                    <td>Abdikheyr Mohamed</td>
-                                    <td>Abdirahman</td>
-                                    <td>abab1001@stud.ek.dk</td>
-                                    <td>16</td>
-                                </tr>
-                                <tr>
-                                    <td>Annika</td>
-                                    <td>Rysgaard</td>
-                                    <td>cph-ar429@stud.ek.dk</td>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <td>Simone Julie Bloch</td>
-                                    <td>Jessen</td>
-                                    <td>cph-sj672@stud.ek.dk</td>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <td>Benjamin Barratt</td>
-                                    <td>Lassen</td>
-                                    <td>cph-bl206@stud.ek.dk</td>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <td>Pernille</td>
-                                    <td>Nielsen</td>
-                                    <td>cph-pn202@stud.ek.dk</td>
-                                    <td>17</td>
-                                </tr>
-                                <tr>
-                                    <td>Henriette Tatiana</td>
-                                    <td>Eisner</td>
-                                    <td>cph-he95@stud.ek.dk</td>
-                                    <td>18</td>
-                                </tr>
-                                <tr>
-                                    <td>Ammar Abbed</td>
-                                    <td>Aziz</td>
-                                    <td>cph-aa670@stud.ek.dk</td>
-                                    <td>18</td>
-                                </tr>
-                                <tr>
-                                    <td>Esben Lind</td>
-                                    <td>Bengtson</td>
-                                    <td>cph-eb228@stud.ek.dk</td>
-                                    <td>18</td>
-                                </tr>
-                                <tr>
-                                    <td>Simon Bittel</td>
-                                    <td>Mørk</td>
-                                    <td>cph-sm603@stud.ek.dk</td>
-                                    <td>18</td>
-                                </tr>
-                             
-                                <!-- <tr>
-                                    <td>William</td>
-                                    <td>Jønsson</td>
-                                    <td>cph-wj128@stud.ek.dk</td>
-                                    <td>19</td>
-                                </tr> -->
-                                <!-- <tr><td>Nicolai Nøhr</td><td>Madsen</td><td>cph-nm262@stud.ek.dk</td><td>19</td></tr> -->
-                                <tr>
-                                    <td>Maj Ølting</td>
-                                    <td>Sauter</td>
-                                    <td>cph-ms1414@stud.ek.dk</td>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>Amalia</td>
-                                    <td>Ahlers</td>
-                                    <td>cph-aa659@stud.ek.dk</td>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>Lonni Ohrberg</td>
-                                    <td>Nielsen</td>
-                                    <td>cph-ln379@stud.ek.dk</td>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>Rasmus Dahlgren</td>
-                                    <td>Laustrup</td>
-                                    <td>cph-rl204@stud.ek.dk</td>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>Sophie Mølgaard-</td>
-                                    <td>Jørgensen</td>
-                                    <td>cph-sm599@stud.ek.dk</td>
-                                    <td>20</td>
-                                </tr>
-                                <!-- <tr><td>Jesper</td><td>Antonsen</td><td>cph-ja460@stud.ek.dk</td><td>21</td></tr> -->
-                                <tr>
-                                    <td>Mirjam Minanda Dorothea</td>
-                                    <td>Bijlsma-Riaz</td>
-                                    <td>cph-mb1134@stud.ek.dk</td>
-                                    <td>21</td>
-                                </tr>
-                                <tr>
-                                    <td>Semrah</td>
-                                    <td>Hussain</td>
-                                    <td>cph-sh592@stud.ek.dk</td>
-                                    <td>21</td>
-                                </tr>
-                                <tr>
-                                    <td>Katja Jeppesen</td>
-                                    <td>Hansen</td>
-                                    <td>cph-kh519@stud.ek.dk</td>
-                                    <td>21</td>
-                                </tr>
-                                <!-- <tr><td>Victor Nordestgaard</td><td>Kubel</td><td>cph-vk129@stud.ek.dk</td><td>21</td></tr> -->
-                            </tbody>
-                        </table>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="container py-4">
+    <div class="hero">
+      <h1>Teams Oversigt — FIN E26</h1>
+      <p>Finansøkonom (online) 1. semester · 23 teams · tilpasset ønskede mødetider (man–fre)</p>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    } else {
-                        entry.target.classList.remove('in-view');
-                    }
-                });
-            }, {
-                threshold: 0.1 // Adjust if necessary to control when the animation starts
-            });
 
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                observer.observe(item);
-            });
-        });
+    <p class="text-muted mb-2">Hop til team:</p>
+    <nav class="toc">
+      <a href="#team-1">Team 1</a><a href="#team-2">Team 2</a><a href="#team-3">Team 3</a><a href="#team-4">Team 4</a><a href="#team-5">Team 5</a><a href="#team-6">Team 6</a><a href="#team-7">Team 7</a><a href="#team-8">Team 8</a><a href="#team-9">Team 9</a><a href="#team-10">Team 10</a><a href="#team-11">Team 11</a><a href="#team-12">Team 12</a><a href="#team-13">Team 13</a><a href="#team-14">Team 14</a><a href="#team-15">Team 15</a><a href="#team-16">Team 16</a><a href="#team-17">Team 17</a><a href="#team-18">Team 18</a><a href="#team-19">Team 19</a><a href="#team-20">Team 20</a><a href="#team-21">Team 21</a><a href="#team-22">Team 22</a><a href="#team-23">Team 23</a>
+    </nav>
 
-        // Script to apply alternating colors based on team number
-        document.addEventListener('DOMContentLoaded', () => {
-            const tableBody = document.querySelector('.table tbody');
-            if (tableBody) {
-                let currentTeam = -1;
-                let colorClass = '';
-                const rows = tableBody.querySelectorAll('tr');
-                rows.forEach(row => {
-                    const teamCell = row.querySelector('td:last-child');
-                    if (teamCell) {
-                        const teamNumber = parseInt(teamCell.textContent.trim(), 10);
-                        if (teamNumber !== currentTeam) {
-                            currentTeam = teamNumber;
-                            colorClass = (currentTeam % 2 === 1) ? 'team-color-1' : 'team-color-2';
-                        }
-                        row.classList.add(colorClass);
-                    }
-                });
-            }
-        });
-    </script>
+    <h2 class="section-title">Teams med tidsønsker</h2>
+    
+    <section class="team-card" id="team-1">
+      <header>
+        <h2>Team 1</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 13-15, Kl. 15-17 | Tirsdag: Kl. 13-15, Kl. 15-17 | Onsdag: Kl. 13-15, Kl. 15-17 | Torsdag: Kl. 13-15, Kl. 15-17 | Fredag: Kl. 13-15, Kl. 15-17</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Helene</td>
+            <td>Rosenkilde</td>
+            <td><a href="mailto:hero1003@stud.ek.dk">hero1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15, Kl. 15-17 · tir: Kl. 13-15, Kl. 15-17 · ons: Kl. 13-15, Kl. 15-17 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Sarah Isabell</td>
+            <td>Albrechtsen</td>
+            <td><a href="mailto:saal1007@stud.ek.dk">saal1007@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15, Kl. 15-17 · tir: Kl. 13-15, Kl. 15-17 · ons: Kl. 13-15, Kl. 15-17 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Sigurd Stage</td>
+            <td>Juul-Andersen</td>
+            <td><a href="mailto:siju1000@stud.ek.dk">siju1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15, Kl. 15-17 · tir: Kl. 13-15, Kl. 15-17 · ons: Kl. 13-15, Kl. 15-17 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Angelina Natalja Szyburska Bursztynska</td>
+            <td>Winther</td>
+            <td><a href="mailto:anwi1002@stud.ek.dk">anwi1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15, Kl. 15-17 · tir: Kl. 13-15, Kl. 15-17 · ons: Kl. 13-15, Kl. 15-17 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 13-15, Kl. 15-17</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-2">
+      <header>
+        <h2>Team 2</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 15-17 | Onsdag: Kl. 15-17 | Fredag: Kl. 15-17</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Khalil Ahmed</td>
+            <td>Rathore</td>
+            <td><a href="mailto:khra1001@stud.ek.dk">khra1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · ons: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Sara-Filippa Llado</td>
+            <td>Cebolinho</td>
+            <td><a href="mailto:sace1001@stud.ek.dk">sace1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · ons: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Alban</td>
+            <td>Mustafi</td>
+            <td><a href="mailto:almu1000@stud.ek.dk">almu1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 13-15 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Cecilie Marie</td>
+            <td>Jessen</td>
+            <td><a href="mailto:ceje1002@stud.ek.dk">ceje1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-3">
+      <header>
+        <h2>Team 3</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Tirsdag: Kl. 10-13 | Onsdag: Kl. 10-13 | Torsdag: Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>meci0001</td>
+            <td>meci0001</td>
+            <td><a href="mailto:meci0001@stud.ek.dk">meci0001@stud.ek.dk</a></td>
+            <td class="prefs">tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Anne Krosby</td>
+            <td>Wiese</td>
+            <td><a href="mailto:anwi1001@stud.ek.dk">anwi1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Camilla Wennerwald</td>
+            <td>Hansen</td>
+            <td><a href="mailto:caha1005@stud.ek.dk">caha1005@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Emina El</td>
+            <td>Akioui</td>
+            <td><a href="mailto:emel1000@stud.ek.dk">emel1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-4">
+      <header>
+        <h2>Team 4</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10 | Onsdag: Kl. 8-10 | Fredag: Kl. 8-10</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Surbhi</td>
+            <td>Madaan</td>
+            <td><a href="mailto:suma1000@stud.ek.dk">suma1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · ons: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Emil Høeg</td>
+            <td>Engelbrechtsen</td>
+            <td><a href="mailto:emen1000@stud.ek.dk">emen1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Freja</td>
+            <td>Borring</td>
+            <td><a href="mailto:frbo1003@stud.ek.dk">frbo1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Louise</td>
+            <td>Johansen</td>
+            <td><a href="mailto:lojo1004@stud.ek.dk">lojo1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-5">
+      <header>
+        <h2>Team 5</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 10-13 | Tirsdag: Kl. 10-13 | Torsdag: Kl. 10-13 | Fredag: Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Malene Benedicte</td>
+            <td>Slengerich</td>
+            <td><a href="mailto:masl1000@stud.ek.dk">masl1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Kathrine Nyehuus</td>
+            <td>Salquist</td>
+            <td><a href="mailto:kasa1003@stud.ek.dk">kasa1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Selina Skriver</td>
+            <td>Guldbrandsen</td>
+            <td><a href="mailto:segu1000@stud.ek.dk">segu1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Stine Munk</td>
+            <td>Nielsen</td>
+            <td><a href="mailto:stni1000@stud.ek.dk">stni1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13 · tor: Kl. 10-13 · fre: Kl. 10-13</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-6">
+      <header>
+        <h2>Team 6</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 15-17 | Torsdag: Kl. 13-15, Kl. 15-17 | Fredag: Kl. 15-17</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Sofia Preuss</td>
+            <td>Hardvendel</td>
+            <td><a href="mailto:soha1005@stud.ek.dk">soha1005@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Amalie Sjøgren</td>
+            <td>Hougaard</td>
+            <td><a href="mailto:amho1000@stud.ek.dk">amho1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 13-15 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Aske Thrane</td>
+            <td>Petersen</td>
+            <td><a href="mailto:aspe1001@stud.ek.dk">aspe1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Aarnab</td>
+            <td>Tajhya</td>
+            <td><a href="mailto:aata1000@stud.ek.dk">aata1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tir: Kl. 10-13, Kl. 13-15, Kl. 15-17 · ons: Kl. 13-15, Kl. 15-17 · tor: Kl. 10-13, Kl. 13-15, Kl. 15-17 · fre: Kl. 10-13, Kl. 13-15, Kl. 15-17</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-7">
+      <header>
+        <h2>Team 7</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 10-13 | Tirsdag: Kl. 8-10 | Onsdag: Kl. 8-10 | Torsdag: Kl. 8-10 | Fredag: Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Anna Vestergaard</td>
+            <td>Pedersen</td>
+            <td><a href="mailto:anpe1014@stud.ek.dk">anpe1014@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Tobias Dreisig</td>
+            <td>Meyer</td>
+            <td><a href="mailto:tome1000@stud.ek.dk">tome1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Rikke Raahauge</td>
+            <td>Bastholm</td>
+            <td><a href="mailto:riba1000@stud.ek.dk">riba1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Lucas Elmer</td>
+            <td>Nørreslet</td>
+            <td><a href="mailto:luno1002@stud.ek.dk">luno1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-8">
+      <header>
+        <h2>Team 8</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 13-15 | Tirsdag: Kl. 13-15 | Onsdag: Kl. 13-15 | Torsdag: Kl. 13-15 | Fredag: Kl. 13-15</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Anna Thaaning</td>
+            <td>Steffensen</td>
+            <td><a href="mailto:anst1003@stud.ek.dk">anst1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15 · tir: Kl. 13-15 · ons: Kl. 13-15 · tor: Kl. 13-15 · fre: Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Christian</td>
+            <td>Petersen</td>
+            <td><a href="mailto:chpe1002@stud.ek.dk">chpe1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15 · tir: Kl. 13-15 · ons: Kl. 13-15 · tor: Kl. 13-15 · fre: Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Sofie</td>
+            <td>Muusmann</td>
+            <td><a href="mailto:somu1000@stud.ek.dk">somu1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15 · tir: Kl. 13-15 · ons: Kl. 13-15 · tor: Kl. 13-15 · fre: Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Arbi Alexander Ellekær</td>
+            <td>Jebali</td>
+            <td><a href="mailto:arje1000@stud.ek.dk">arje1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-9">
+      <header>
+        <h2>Team 9</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 13-15 | Tirsdag: Kl. 13-15 | Onsdag: Kl. 13-15 | Torsdag: Kl. 15-17 | Fredag: Kl. 13-15</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Carl</td>
+            <td>Jarnum</td>
+            <td><a href="mailto:caja1000@stud.ek.dk">caja1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15 · tir: Kl. 13-15 · ons: Kl. 13-15 · tor: Kl. 15-17 · fre: Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Ea</td>
+            <td>Holst</td>
+            <td><a href="mailto:eaho1000@stud.ek.dk">eaho1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tir: Kl. 10-13, Kl. 13-15, Kl. 15-17 · ons: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tor: Kl. 10-13, Kl. 13-15, Kl. 15-17 · fre: Kl. 10-13, Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Jonas Mortensen</td>
+            <td>Strøm</td>
+            <td><a href="mailto:jost1007@stud.ek.dk">jost1007@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tir: Kl. 10-13, Kl. 13-15, Kl. 15-17 · ons: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tor: Kl. 10-13, Kl. 13-15, Kl. 15-17 · fre: Kl. 10-13, Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Frida Emilie Søgren</td>
+            <td>Bramming</td>
+            <td><a href="mailto:frbr1002@stud.ek.dk">frbr1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 13-15, Kl. 15-17 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-10">
+      <header>
+        <h2>Team 10</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 15-17 | Tirsdag: Kl. 15-17 | Onsdag: Kl. 15-17 | Torsdag: Kl. 15-17 | Fredag: Kl. 15-17</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Daniel Velazquez</td>
+            <td>Johansen</td>
+            <td><a href="mailto:dajo1004@stud.ek.dk">dajo1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Frederik</td>
+            <td>Walter</td>
+            <td><a href="mailto:frje1004@stud.ek.dk">frje1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Oliver Johnny</td>
+            <td>Laursen</td>
+            <td><a href="mailto:olla1001@stud.ek.dk">olla1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Frederik Kjeldahl</td>
+            <td>Mikkelsen</td>
+            <td><a href="mailto:frmi1000@stud.ek.dk">frmi1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 15-17 · tir: Kl. 8-10, Kl. 15-17 · ons: Kl. 8-10, Kl. 15-17 · tor: Kl. 8-10, Kl. 15-17 · fre: Kl. 8-10, Kl. 15-17</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-11">
+      <header>
+        <h2>Team 11</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 15-17 | Tirsdag: Kl. 15-17 | Onsdag: Kl. 15-17 | Torsdag: Kl. 15-17 | Fredag: Kl. 8-10</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Gitte</td>
+            <td>Jensen</td>
+            <td><a href="mailto:gije1001@stud.ek.dk">gije1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 15-17 · tir: Kl. 15-17 · ons: Kl. 15-17 · tor: Kl. 15-17 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Durita Debes</td>
+            <td>Jacobsen</td>
+            <td><a href="mailto:duja1000@stud.ek.dk">duja1000@stud.ek.dk</a></td>
+            <td class="prefs">ons: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Silje</td>
+            <td>Holm</td>
+            <td><a href="mailto:siho1002@stud.ek.dk">siho1002@stud.ek.dk</a></td>
+            <td class="prefs">tir: Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Jakob Dannemann</td>
+            <td>Andersen</td>
+            <td><a href="mailto:jaan1008@stud.ek.dk">jaan1008@stud.ek.dk</a></td>
+            <td class="prefs">fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-12">
+      <header>
+        <h2>Team 12</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10 | Tirsdag: Kl. 8-10 | Onsdag: Kl. 8-10 | Torsdag: Kl. 8-10 | Fredag: Kl. 8-10</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mercan</td>
+            <td>Erdogmus</td>
+            <td><a href="mailto:meer1000@stud.ek.dk">meer1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Simon Alex</td>
+            <td>Kristensen</td>
+            <td><a href="mailto:sikr1004@stud.ek.dk">sikr1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Victoria Jordana</td>
+            <td>Balle-Christensen</td>
+            <td><a href="mailto:viba1000@stud.ek.dk">viba1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Viktor Khammee</td>
+            <td>Madsen</td>
+            <td><a href="mailto:vima1001@stud.ek.dk">vima1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-13">
+      <header>
+        <h2>Team 13</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10, Kl. 15-17 | Tirsdag: Kl. 8-10 | Onsdag: Kl. 8-10 | Torsdag: Kl. 8-10 | Fredag: Kl. 8-10</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Adil</td>
+            <td>Zaman</td>
+            <td><a href="mailto:adza1000@stud.ek.dk">adza1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 15-17 · tir: Kl. 8-10 · ons: Kl. 8-10 · tor: Kl. 8-10 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Anas Daniel Hasselbalch</td>
+            <td>Martorelli</td>
+            <td><a href="mailto:anma1015@stud.ek.dk">anma1015@stud.ek.dk</a></td>
+            <td class="prefs">ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Anders Greve</td>
+            <td>Bossen</td>
+            <td><a href="mailto:anbo1007@stud.ek.dk">anbo1007@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Asker Faber</td>
+            <td>Jensen</td>
+            <td><a href="mailto:asje1002@stud.ek.dk">asje1002@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-14">
+      <header>
+        <h2>Team 14</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10, Kl. 10-13 | Tirsdag: Kl. 8-10, Kl. 10-13 | Torsdag: Kl. 8-10, Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Sebastian</td>
+            <td>Holmberg</td>
+            <td><a href="mailto:seho1002@stud.ek.dk">seho1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Ingred Fridasofiia Alexandra</td>
+            <td>Søgård</td>
+            <td><a href="mailto:inso1000@stud.ek.dk">inso1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Nana Jedig Pauly</td>
+            <td>Mortensen</td>
+            <td><a href="mailto:namo1002@stud.ek.dk">namo1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Nikolai Marcus</td>
+            <td>Rath</td>
+            <td><a href="mailto:nira0005@stud.ek.dk">nira0005@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-15">
+      <header>
+        <h2>Team 15</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 10-13 | Onsdag: Kl. 10-13 | Torsdag: Kl. 15-17 | Fredag: Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Amalie Kryger</td>
+            <td>Olsen</td>
+            <td><a href="mailto:amol1001@stud.ek.dk">amol1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 15-17 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 15-17 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Emma Jian Præstiin</td>
+            <td>Blindkilde</td>
+            <td><a href="mailto:embl1000@stud.ek.dk">embl1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Abdalla</td>
+            <td>Sbeihi</td>
+            <td><a href="mailto:absb1000@stud.ek.dk">absb1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tir: Kl. 10-13, Kl. 13-15, Kl. 15-17 · ons: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tor: Kl. 10-13, Kl. 13-15, Kl. 15-17 · fre: Kl. 10-13, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>David Marcus Reinholdt</td>
+            <td>Alaydrus</td>
+            <td><a href="mailto:daal1003@stud.ek.dk">daal1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13 · tir: Kl. 10-13 · ons: Kl. 10-13, Kl. 15-17 · tor: Kl. 10-13, Kl. 15-17 · fre: Kl. 10-13, Kl. 15-17</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-16">
+      <header>
+        <h2>Team 16</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10 | Tirsdag: Kl. 8-10 | Onsdag: Kl. 8-10, Kl. 10-13 | Torsdag: Kl. 8-10, Kl. 10-13 | Fredag: Kl. 8-10, Kl. 10-13</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Daria</td>
+            <td>Lebedko</td>
+            <td><a href="mailto:dale1002@stud.ek.dk">dale1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · tir: Kl. 8-10 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Oscar Damberg</td>
+            <td>Madsen</td>
+            <td><a href="mailto:osma1000@stud.ek.dk">osma1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Hanin</td>
+            <td>Al-Fadala</td>
+            <td><a href="mailto:haal1002@stud.ek.dk">haal1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 8-10, Kl. 10-13 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Andreas Kofoed</td>
+            <td>Blem</td>
+            <td><a href="mailto:cph-ab686@stud.ek.dk">cph-ab686@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13 · tir: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-17">
+      <header>
+        <h2>Team 17</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 10-13, Kl. 13-15 | Tirsdag: Kl. 10-13, Kl. 13-15 | Onsdag: Kl. 10-13, Kl. 13-15 | Torsdag: Kl. 10-13, Kl. 13-15</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Nicole Denice</td>
+            <td>Nielsen</td>
+            <td><a href="mailto:nini1007@stud.ek.dk">nini1007@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Ali Mahdi</td>
+            <td>Saeed</td>
+            <td><a href="mailto:alsa1003@stud.ek.dk">alsa1003@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13</td>
+          </tr>
+          <tr>
+            <td>Laura</td>
+            <td>Jørgensen</td>
+            <td><a href="mailto:lajo1002@stud.ek.dk">lajo1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Luckaagnes Zezza Lulue</td>
+            <td>Petersen</td>
+            <td><a href="mailto:lupe1000@stud.ek.dk">lupe1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-18">
+      <header>
+        <h2>Team 18</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 8-10, Kl. 13-15 | Onsdag: Kl. 8-10, Kl. 13-15 | Torsdag: Kl. 8-10, Kl. 13-15 | Fredag: Kl. 8-10, Kl. 13-15</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Pernille Joan</td>
+            <td>Sørensen</td>
+            <td><a href="mailto:peso1004@stud.ek.dk">peso1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 13-15 · ons: Kl. 8-10, Kl. 13-15 · tor: Kl. 8-10, Kl. 13-15 · fre: Kl. 8-10, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Emilie</td>
+            <td>Hansen</td>
+            <td><a href="mailto:emha1005@stud.ek.dk">emha1005@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Jacob</td>
+            <td>Petersen</td>
+            <td><a href="mailto:jape1004@stud.ek.dk">jape1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Nicoline Bøgh</td>
+            <td>Lander</td>
+            <td><a href="mailto:nila1004@stud.ek.dk">nila1004@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-19">
+      <header>
+        <h2>Team 19</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Mandag: Kl. 13-15 | Fredag: Kl. 8-10</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Camilla Rosenqvist Zangenberg</td>
+            <td>Eriksen</td>
+            <td><a href="mailto:caer1003@stud.ek.dk">caer1003@stud.ek.dk</a></td>
+            <td class="prefs">tir: Kl. 15-17 · ons: Kl. 15-17 · fre: Kl. 8-10, Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Isabella Marie</td>
+            <td>Gleerup</td>
+            <td><a href="mailto:isgl1001@stud.ek.dk">isgl1001@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tir: Kl. 10-13, Kl. 13-15, Kl. 15-17 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10</td>
+          </tr>
+          <tr>
+            <td>Astrid Vest</td>
+            <td>Wagner</td>
+            <td><a href="mailto:aswa1000@stud.ek.dk">aswa1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 13-15, Kl. 15-17 · tir: Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 13-15, Kl. 15-17 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Nikolaj Malmkvist</td>
+            <td>Donovan</td>
+            <td><a href="mailto:nido1000@stud.ek.dk">nido1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 8-10, Kl. 10-13 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 8-10, Kl. 10-13, Kl. 13-15</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-20">
+      <header>
+        <h2>Team 20</h2>
+        <span class="count">5 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Tirsdag: Kl. 10-13, Kl. 13-15 | Onsdag: Kl. 13-15</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Julie</td>
+            <td>Rasmussen</td>
+            <td><a href="mailto:jura1000@stud.ek.dk">jura1000@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13, Kl. 13-15, Kl. 15-17</td>
+          </tr>
+          <tr>
+            <td>Nicolai Benjamin</td>
+            <td>Duch-Pedersen</td>
+            <td><a href="mailto:nidu1002@stud.ek.dk">nidu1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 10-13, Kl. 13-15 · ons: Kl. 10-13, Kl. 13-15 · tor: Kl. 10-13, Kl. 13-15 · fre: Kl. 10-13, Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Sofie Josefine Emilie Holm</td>
+            <td>Johansen</td>
+            <td><a href="mailto:sojo1002@stud.ek.dk">sojo1002@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tir: Kl. 8-10, Kl. 10-13, Kl. 13-15 · ons: Kl. 13-15 · tor: Kl. 8-10, Kl. 10-13, Kl. 13-15 · fre: Kl. 13-15</td>
+          </tr>
+          <tr>
+            <td>Martha Rolighed</td>
+            <td>Rud</td>
+            <td><a href="mailto:maru1001@stud.ek.dk">maru1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Maja Marie</td>
+            <td>Hansen</td>
+            <td><a href="mailto:maha1036@stud.ek.dk">maha1036@stud.ek.dk</a></td>
+            <td class="prefs">man: Kl. 8-10 · ons: Kl. 8-10, Kl. 10-13, Kl. 13-15 · tor: Kl. 8-10</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-21">
+      <header>
+        <h2>Team 21</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Ingen skemaønsker angivet — aftal tider i teamet</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Abdul Rehman</td>
+            <td>Manzoor</td>
+            <td><a href="mailto:abma1001@stud.ek.dk">abma1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Dennis</td>
+            <td>Dong</td>
+            <td><a href="mailto:dedo1000@stud.ek.dk">dedo1000@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Denise Valentin</td>
+            <td>Raith</td>
+            <td><a href="mailto:dera1001@stud.ek.dk">dera1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Dino</td>
+            <td>Ljajic</td>
+            <td><a href="mailto:dilj0001@stud.ek.dk">dilj0001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-22">
+      <header>
+        <h2>Team 22</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Ingen skemaønsker angivet — aftal tider i teamet</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Eray Can</td>
+            <td>Cartilli</td>
+            <td><a href="mailto:erca1001@stud.ek.dk">erca1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Florina</td>
+            <td>Grigore</td>
+            <td><a href="mailto:flgr1000@stud.ek.dk">flgr1000@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Mads</td>
+            <td>Hvarre</td>
+            <td><a href="mailto:mahv0001@stud.ek.dk">mahv0001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Malou</td>
+            <td>Kurland</td>
+            <td><a href="mailto:maku1000@stud.ek.dk">maku1000@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr></tbody>
+      </table>
+    </section>
+    <section class="team-card" id="team-23">
+      <header>
+        <h2>Team 23</h2>
+        <span class="count">4 medlemmer</span>
+      </header>
+      <p class="common"><strong>Fælles mulige tider:</strong> Ingen skemaønsker angivet — aftal tider i teamet</p>
+      <table class="table table-sm table-bordered mb-0">
+        <thead><tr><th>Fornavn</th><th>Efternavn</th><th>E-mail</th><th>Ønskede tider (man–fre)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mie Juul</td>
+            <td>Bjerre</td>
+            <td><a href="mailto:mibj1000@stud.ek.dk">mibj1000@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Mikkel Hulbæk</td>
+            <td>Skovlund</td>
+            <td><a href="mailto:misk1002@stud.ek.dk">misk1002@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Morten Skriver</td>
+            <td>Olesen</td>
+            <td><a href="mailto:mool1001@stud.ek.dk">mool1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr>
+          <tr>
+            <td>Monique Aagaard</td>
+            <td>Sonne</td>
+            <td><a href="mailto:moso1001@stud.ek.dk">moso1001@stud.ek.dk</a></td>
+            <td class="prefs">Ingen skemaønsker</td>
+          </tr></tbody>
+      </table>
+    </section>
+
+    <h2 class="section-title">Samlet liste</h2>
+    <div class="team-card">
+      <table class="table table-sm table-small-font table-bordered mb-0">
+        <thead>
+          <tr>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>E-mailadresse</th>
+            <th>Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+      <tr class="team-color-1">
+        <td>Helene</td>
+        <td>Rosenkilde</td>
+        <td><a href="mailto:hero1003@stud.ek.dk">hero1003@stud.ek.dk</a></td>
+        <td>1</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Sarah Isabell</td>
+        <td>Albrechtsen</td>
+        <td><a href="mailto:saal1007@stud.ek.dk">saal1007@stud.ek.dk</a></td>
+        <td>1</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Sigurd Stage</td>
+        <td>Juul-Andersen</td>
+        <td><a href="mailto:siju1000@stud.ek.dk">siju1000@stud.ek.dk</a></td>
+        <td>1</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Angelina Natalja Szyburska Bursztynska</td>
+        <td>Winther</td>
+        <td><a href="mailto:anwi1002@stud.ek.dk">anwi1002@stud.ek.dk</a></td>
+        <td>1</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Khalil Ahmed</td>
+        <td>Rathore</td>
+        <td><a href="mailto:khra1001@stud.ek.dk">khra1001@stud.ek.dk</a></td>
+        <td>2</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Sara-Filippa Llado</td>
+        <td>Cebolinho</td>
+        <td><a href="mailto:sace1001@stud.ek.dk">sace1001@stud.ek.dk</a></td>
+        <td>2</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Alban</td>
+        <td>Mustafi</td>
+        <td><a href="mailto:almu1000@stud.ek.dk">almu1000@stud.ek.dk</a></td>
+        <td>2</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Cecilie Marie</td>
+        <td>Jessen</td>
+        <td><a href="mailto:ceje1002@stud.ek.dk">ceje1002@stud.ek.dk</a></td>
+        <td>2</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>meci0001</td>
+        <td>meci0001</td>
+        <td><a href="mailto:meci0001@stud.ek.dk">meci0001@stud.ek.dk</a></td>
+        <td>3</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Anne Krosby</td>
+        <td>Wiese</td>
+        <td><a href="mailto:anwi1001@stud.ek.dk">anwi1001@stud.ek.dk</a></td>
+        <td>3</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Camilla Wennerwald</td>
+        <td>Hansen</td>
+        <td><a href="mailto:caha1005@stud.ek.dk">caha1005@stud.ek.dk</a></td>
+        <td>3</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Emina El</td>
+        <td>Akioui</td>
+        <td><a href="mailto:emel1000@stud.ek.dk">emel1000@stud.ek.dk</a></td>
+        <td>3</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Surbhi</td>
+        <td>Madaan</td>
+        <td><a href="mailto:suma1000@stud.ek.dk">suma1000@stud.ek.dk</a></td>
+        <td>4</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Emil Høeg</td>
+        <td>Engelbrechtsen</td>
+        <td><a href="mailto:emen1000@stud.ek.dk">emen1000@stud.ek.dk</a></td>
+        <td>4</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Freja</td>
+        <td>Borring</td>
+        <td><a href="mailto:frbo1003@stud.ek.dk">frbo1003@stud.ek.dk</a></td>
+        <td>4</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Louise</td>
+        <td>Johansen</td>
+        <td><a href="mailto:lojo1004@stud.ek.dk">lojo1004@stud.ek.dk</a></td>
+        <td>4</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Malene Benedicte</td>
+        <td>Slengerich</td>
+        <td><a href="mailto:masl1000@stud.ek.dk">masl1000@stud.ek.dk</a></td>
+        <td>5</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Kathrine Nyehuus</td>
+        <td>Salquist</td>
+        <td><a href="mailto:kasa1003@stud.ek.dk">kasa1003@stud.ek.dk</a></td>
+        <td>5</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Selina Skriver</td>
+        <td>Guldbrandsen</td>
+        <td><a href="mailto:segu1000@stud.ek.dk">segu1000@stud.ek.dk</a></td>
+        <td>5</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Stine Munk</td>
+        <td>Nielsen</td>
+        <td><a href="mailto:stni1000@stud.ek.dk">stni1000@stud.ek.dk</a></td>
+        <td>5</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Sofia Preuss</td>
+        <td>Hardvendel</td>
+        <td><a href="mailto:soha1005@stud.ek.dk">soha1005@stud.ek.dk</a></td>
+        <td>6</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Amalie Sjøgren</td>
+        <td>Hougaard</td>
+        <td><a href="mailto:amho1000@stud.ek.dk">amho1000@stud.ek.dk</a></td>
+        <td>6</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Aske Thrane</td>
+        <td>Petersen</td>
+        <td><a href="mailto:aspe1001@stud.ek.dk">aspe1001@stud.ek.dk</a></td>
+        <td>6</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Aarnab</td>
+        <td>Tajhya</td>
+        <td><a href="mailto:aata1000@stud.ek.dk">aata1000@stud.ek.dk</a></td>
+        <td>6</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Anna Vestergaard</td>
+        <td>Pedersen</td>
+        <td><a href="mailto:anpe1014@stud.ek.dk">anpe1014@stud.ek.dk</a></td>
+        <td>7</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Tobias Dreisig</td>
+        <td>Meyer</td>
+        <td><a href="mailto:tome1000@stud.ek.dk">tome1000@stud.ek.dk</a></td>
+        <td>7</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Rikke Raahauge</td>
+        <td>Bastholm</td>
+        <td><a href="mailto:riba1000@stud.ek.dk">riba1000@stud.ek.dk</a></td>
+        <td>7</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Lucas Elmer</td>
+        <td>Nørreslet</td>
+        <td><a href="mailto:luno1002@stud.ek.dk">luno1002@stud.ek.dk</a></td>
+        <td>7</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Anna Thaaning</td>
+        <td>Steffensen</td>
+        <td><a href="mailto:anst1003@stud.ek.dk">anst1003@stud.ek.dk</a></td>
+        <td>8</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Christian</td>
+        <td>Petersen</td>
+        <td><a href="mailto:chpe1002@stud.ek.dk">chpe1002@stud.ek.dk</a></td>
+        <td>8</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Sofie</td>
+        <td>Muusmann</td>
+        <td><a href="mailto:somu1000@stud.ek.dk">somu1000@stud.ek.dk</a></td>
+        <td>8</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Arbi Alexander Ellekær</td>
+        <td>Jebali</td>
+        <td><a href="mailto:arje1000@stud.ek.dk">arje1000@stud.ek.dk</a></td>
+        <td>8</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Carl</td>
+        <td>Jarnum</td>
+        <td><a href="mailto:caja1000@stud.ek.dk">caja1000@stud.ek.dk</a></td>
+        <td>9</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Ea</td>
+        <td>Holst</td>
+        <td><a href="mailto:eaho1000@stud.ek.dk">eaho1000@stud.ek.dk</a></td>
+        <td>9</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Jonas Mortensen</td>
+        <td>Strøm</td>
+        <td><a href="mailto:jost1007@stud.ek.dk">jost1007@stud.ek.dk</a></td>
+        <td>9</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Frida Emilie Søgren</td>
+        <td>Bramming</td>
+        <td><a href="mailto:frbr1002@stud.ek.dk">frbr1002@stud.ek.dk</a></td>
+        <td>9</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Daniel Velazquez</td>
+        <td>Johansen</td>
+        <td><a href="mailto:dajo1004@stud.ek.dk">dajo1004@stud.ek.dk</a></td>
+        <td>10</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Frederik</td>
+        <td>Walter</td>
+        <td><a href="mailto:frje1004@stud.ek.dk">frje1004@stud.ek.dk</a></td>
+        <td>10</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Oliver Johnny</td>
+        <td>Laursen</td>
+        <td><a href="mailto:olla1001@stud.ek.dk">olla1001@stud.ek.dk</a></td>
+        <td>10</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Frederik Kjeldahl</td>
+        <td>Mikkelsen</td>
+        <td><a href="mailto:frmi1000@stud.ek.dk">frmi1000@stud.ek.dk</a></td>
+        <td>10</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Gitte</td>
+        <td>Jensen</td>
+        <td><a href="mailto:gije1001@stud.ek.dk">gije1001@stud.ek.dk</a></td>
+        <td>11</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Durita Debes</td>
+        <td>Jacobsen</td>
+        <td><a href="mailto:duja1000@stud.ek.dk">duja1000@stud.ek.dk</a></td>
+        <td>11</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Silje</td>
+        <td>Holm</td>
+        <td><a href="mailto:siho1002@stud.ek.dk">siho1002@stud.ek.dk</a></td>
+        <td>11</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Jakob Dannemann</td>
+        <td>Andersen</td>
+        <td><a href="mailto:jaan1008@stud.ek.dk">jaan1008@stud.ek.dk</a></td>
+        <td>11</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Mercan</td>
+        <td>Erdogmus</td>
+        <td><a href="mailto:meer1000@stud.ek.dk">meer1000@stud.ek.dk</a></td>
+        <td>12</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Simon Alex</td>
+        <td>Kristensen</td>
+        <td><a href="mailto:sikr1004@stud.ek.dk">sikr1004@stud.ek.dk</a></td>
+        <td>12</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Victoria Jordana</td>
+        <td>Balle-Christensen</td>
+        <td><a href="mailto:viba1000@stud.ek.dk">viba1000@stud.ek.dk</a></td>
+        <td>12</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Viktor Khammee</td>
+        <td>Madsen</td>
+        <td><a href="mailto:vima1001@stud.ek.dk">vima1001@stud.ek.dk</a></td>
+        <td>12</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Adil</td>
+        <td>Zaman</td>
+        <td><a href="mailto:adza1000@stud.ek.dk">adza1000@stud.ek.dk</a></td>
+        <td>13</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Anas Daniel Hasselbalch</td>
+        <td>Martorelli</td>
+        <td><a href="mailto:anma1015@stud.ek.dk">anma1015@stud.ek.dk</a></td>
+        <td>13</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Anders Greve</td>
+        <td>Bossen</td>
+        <td><a href="mailto:anbo1007@stud.ek.dk">anbo1007@stud.ek.dk</a></td>
+        <td>13</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Asker Faber</td>
+        <td>Jensen</td>
+        <td><a href="mailto:asje1002@stud.ek.dk">asje1002@stud.ek.dk</a></td>
+        <td>13</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Sebastian</td>
+        <td>Holmberg</td>
+        <td><a href="mailto:seho1002@stud.ek.dk">seho1002@stud.ek.dk</a></td>
+        <td>14</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Ingred Fridasofiia Alexandra</td>
+        <td>Søgård</td>
+        <td><a href="mailto:inso1000@stud.ek.dk">inso1000@stud.ek.dk</a></td>
+        <td>14</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Nana Jedig Pauly</td>
+        <td>Mortensen</td>
+        <td><a href="mailto:namo1002@stud.ek.dk">namo1002@stud.ek.dk</a></td>
+        <td>14</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Nikolai Marcus</td>
+        <td>Rath</td>
+        <td><a href="mailto:nira0005@stud.ek.dk">nira0005@stud.ek.dk</a></td>
+        <td>14</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Amalie Kryger</td>
+        <td>Olsen</td>
+        <td><a href="mailto:amol1001@stud.ek.dk">amol1001@stud.ek.dk</a></td>
+        <td>15</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Emma Jian Præstiin</td>
+        <td>Blindkilde</td>
+        <td><a href="mailto:embl1000@stud.ek.dk">embl1000@stud.ek.dk</a></td>
+        <td>15</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Abdalla</td>
+        <td>Sbeihi</td>
+        <td><a href="mailto:absb1000@stud.ek.dk">absb1000@stud.ek.dk</a></td>
+        <td>15</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>David Marcus Reinholdt</td>
+        <td>Alaydrus</td>
+        <td><a href="mailto:daal1003@stud.ek.dk">daal1003@stud.ek.dk</a></td>
+        <td>15</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Daria</td>
+        <td>Lebedko</td>
+        <td><a href="mailto:dale1002@stud.ek.dk">dale1002@stud.ek.dk</a></td>
+        <td>16</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Oscar Damberg</td>
+        <td>Madsen</td>
+        <td><a href="mailto:osma1000@stud.ek.dk">osma1000@stud.ek.dk</a></td>
+        <td>16</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Hanin</td>
+        <td>Al-Fadala</td>
+        <td><a href="mailto:haal1002@stud.ek.dk">haal1002@stud.ek.dk</a></td>
+        <td>16</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Andreas Kofoed</td>
+        <td>Blem</td>
+        <td><a href="mailto:cph-ab686@stud.ek.dk">cph-ab686@stud.ek.dk</a></td>
+        <td>16</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Nicole Denice</td>
+        <td>Nielsen</td>
+        <td><a href="mailto:nini1007@stud.ek.dk">nini1007@stud.ek.dk</a></td>
+        <td>17</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Ali Mahdi</td>
+        <td>Saeed</td>
+        <td><a href="mailto:alsa1003@stud.ek.dk">alsa1003@stud.ek.dk</a></td>
+        <td>17</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Laura</td>
+        <td>Jørgensen</td>
+        <td><a href="mailto:lajo1002@stud.ek.dk">lajo1002@stud.ek.dk</a></td>
+        <td>17</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Luckaagnes Zezza Lulue</td>
+        <td>Petersen</td>
+        <td><a href="mailto:lupe1000@stud.ek.dk">lupe1000@stud.ek.dk</a></td>
+        <td>17</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Pernille Joan</td>
+        <td>Sørensen</td>
+        <td><a href="mailto:peso1004@stud.ek.dk">peso1004@stud.ek.dk</a></td>
+        <td>18</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Emilie</td>
+        <td>Hansen</td>
+        <td><a href="mailto:emha1005@stud.ek.dk">emha1005@stud.ek.dk</a></td>
+        <td>18</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Jacob</td>
+        <td>Petersen</td>
+        <td><a href="mailto:jape1004@stud.ek.dk">jape1004@stud.ek.dk</a></td>
+        <td>18</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Nicoline Bøgh</td>
+        <td>Lander</td>
+        <td><a href="mailto:nila1004@stud.ek.dk">nila1004@stud.ek.dk</a></td>
+        <td>18</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Camilla Rosenqvist Zangenberg</td>
+        <td>Eriksen</td>
+        <td><a href="mailto:caer1003@stud.ek.dk">caer1003@stud.ek.dk</a></td>
+        <td>19</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Isabella Marie</td>
+        <td>Gleerup</td>
+        <td><a href="mailto:isgl1001@stud.ek.dk">isgl1001@stud.ek.dk</a></td>
+        <td>19</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Astrid Vest</td>
+        <td>Wagner</td>
+        <td><a href="mailto:aswa1000@stud.ek.dk">aswa1000@stud.ek.dk</a></td>
+        <td>19</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Nikolaj Malmkvist</td>
+        <td>Donovan</td>
+        <td><a href="mailto:nido1000@stud.ek.dk">nido1000@stud.ek.dk</a></td>
+        <td>19</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Julie</td>
+        <td>Rasmussen</td>
+        <td><a href="mailto:jura1000@stud.ek.dk">jura1000@stud.ek.dk</a></td>
+        <td>20</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Nicolai Benjamin</td>
+        <td>Duch-Pedersen</td>
+        <td><a href="mailto:nidu1002@stud.ek.dk">nidu1002@stud.ek.dk</a></td>
+        <td>20</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Sofie Josefine Emilie Holm</td>
+        <td>Johansen</td>
+        <td><a href="mailto:sojo1002@stud.ek.dk">sojo1002@stud.ek.dk</a></td>
+        <td>20</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Martha Rolighed</td>
+        <td>Rud</td>
+        <td><a href="mailto:maru1001@stud.ek.dk">maru1001@stud.ek.dk</a></td>
+        <td>20</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Maja Marie</td>
+        <td>Hansen</td>
+        <td><a href="mailto:maha1036@stud.ek.dk">maha1036@stud.ek.dk</a></td>
+        <td>20</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Abdul Rehman</td>
+        <td>Manzoor</td>
+        <td><a href="mailto:abma1001@stud.ek.dk">abma1001@stud.ek.dk</a></td>
+        <td>21</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Dennis</td>
+        <td>Dong</td>
+        <td><a href="mailto:dedo1000@stud.ek.dk">dedo1000@stud.ek.dk</a></td>
+        <td>21</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Denise Valentin</td>
+        <td>Raith</td>
+        <td><a href="mailto:dera1001@stud.ek.dk">dera1001@stud.ek.dk</a></td>
+        <td>21</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Dino</td>
+        <td>Ljajic</td>
+        <td><a href="mailto:dilj0001@stud.ek.dk">dilj0001@stud.ek.dk</a></td>
+        <td>21</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Eray Can</td>
+        <td>Cartilli</td>
+        <td><a href="mailto:erca1001@stud.ek.dk">erca1001@stud.ek.dk</a></td>
+        <td>22</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Florina</td>
+        <td>Grigore</td>
+        <td><a href="mailto:flgr1000@stud.ek.dk">flgr1000@stud.ek.dk</a></td>
+        <td>22</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Mads</td>
+        <td>Hvarre</td>
+        <td><a href="mailto:mahv0001@stud.ek.dk">mahv0001@stud.ek.dk</a></td>
+        <td>22</td>
+      </tr>
+      <tr class="team-color-2">
+        <td>Malou</td>
+        <td>Kurland</td>
+        <td><a href="mailto:maku1000@stud.ek.dk">maku1000@stud.ek.dk</a></td>
+        <td>22</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Mie Juul</td>
+        <td>Bjerre</td>
+        <td><a href="mailto:mibj1000@stud.ek.dk">mibj1000@stud.ek.dk</a></td>
+        <td>23</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Mikkel Hulbæk</td>
+        <td>Skovlund</td>
+        <td><a href="mailto:misk1002@stud.ek.dk">misk1002@stud.ek.dk</a></td>
+        <td>23</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Morten Skriver</td>
+        <td>Olesen</td>
+        <td><a href="mailto:mool1001@stud.ek.dk">mool1001@stud.ek.dk</a></td>
+        <td>23</td>
+      </tr>
+      <tr class="team-color-1">
+        <td>Monique Aagaard</td>
+        <td>Sonne</td>
+        <td><a href="mailto:moso1001@stud.ek.dk">moso1001@stud.ek.dk</a></td>
+        <td>23</td>
+      </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
-
 </html>
