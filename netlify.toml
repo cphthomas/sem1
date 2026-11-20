@@ -1,3 +1,15 @@
 [build]
-  command = "mkdir -p .publish && rsync -a --exclude '.git' --exclude '.publish' --exclude '.netlify' --exclude 'images' --exclude 'moodle' --exclude '.DS_Store' ./ .publish/"
+  command = "mkdir -p .publish && rsync -a --exclude '.git' --exclude '.publish' --exclude '.netlify' --exclude 'images' --exclude 'moodle' --exclude '.DS_Store' --exclude 'eksamen-december-2026' ./ .publish/"
   publish = ".publish"
+
+[[redirects]]
+  from = "/9_tema3.1sol"
+  to = "/9_temasol"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/9_tema3.1sol.html"
+  to = "/9_temasol"
+  status = 301
+  force = true

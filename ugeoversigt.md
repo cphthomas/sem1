@@ -148,5 +148,5 @@ Datoer er tentative. Endelige datoer og tider udmeldes på WISEflow af eksamensk
 - Syge/omprøve: aflevering 22. februar 2027 kl. 09:00 · mundtlig 24.–26. februar 2027
 - Undervisningsfri fra mundtlig eksamen til 2. semester-start
 - Materiale 2. semester: 28. januar 2027 · undervisningsstart: 1. februar 2027
-- Zoom: https://cphbusiness.zoom.us/j/7577575555
+- Zoom: https://ek-dk.zoom.us/my/petersen
 - Side: https://online.cphbusiness.dk/mod/page/view.php?id=9509
