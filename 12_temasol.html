@@ -7,34 +7,315 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        *, *::before, *::after { border-radius: 0 !important; }
+        .sol-fig { margin-top: 0.75rem; }
+    </style>
 </head>
 <body data-page-id="cbs2">
     <div class="container py-5">
         <div class="row">
-            <div class="col-lg-7 mx-auto">
+            <div class="col-lg-10 mx-auto">
                 <ul class="timeline">
                     <li class="timeline-item bg-white ml-3 p-4 shadow">
                         <div class="timeline-arrow"></div>
                         <h2>Temaprojekt – LØSNINGSFORSLAG</h2>
-                        <p>Case: AquaPure A/S</p>
+                        <h3>Case: AquaPure A/S</h3>
+                        <p>I er økonomikonsulenter for AquaPure A/S, der producerer vandrensningsanlæg til både private og erhverv. Ledelsen vil have en vurdering af, hvordan de to hovedprodukter skal optimeres på deres respektive markeder.</p>
+                        <p>Standardanlægget <b>"HomeFilter"</b> sælges på et marked med fuldkommen konkurrence. Markedsprisen er 600 kr. De totale omkostninger er:<br><b>TO = 0,02X² + 80X + 10.000</b></p>
+                        <p>Erhvervsanlægget <b>"ProClean"</b> sælges som monopol. Prisafsætningsfunktionen er:<br><b>P = −0,5X + 3.000</b><br>og de totale omkostninger er:<br><b>TO = 0,2X² + 200X + 40.000</b></p>
+                        <p>En kommune tilbyder at købe 50 extra "HomeFilter" til 150 kr. pr. stk. Der er ledig kapacitet, så FO stiger ikke.</p>
+                        <p>HomeFilter og ProClean er tjekket i <a href="https://optimer.tepedu.dk/optimering2" target="_blank">optimeringsappen</a>. I appen tastes hældning (a) og skæring (b) for P og for GROMK. Appen finder den mængde, der maksimerer dækningsbidraget. Overskuddet er DB minus de faste omkostninger. De faste omkostninger flytter ikke den optimale mængde.</p>
                     </li>
+
                     <li class="timeline-item bg-white ml-3 p-4 shadow">
                         <div class="timeline-arrow"></div>
-                        <ol type="A">
-                            <li><b>HomeFilter:</b> fuldkommen konkurrence. <b>ProClean:</b> monopol.</li>
-                            <hr>
-                            <li>TO = 0,02X² + 80X + 10.000 ⇒ <b>GROMK = 0,04X + 80</b></li>
-                            <hr>
-                            <li>600 = 0,04X + 80 ⇒ <b>X = 13.000</b>. Oms = 7.800.000. TO = 4.430.000. <b>Overskud = 3.370.000 kr.</b></li>
-                            <hr>
-                            <li>P = −0,5X + 3.000 ⇒ <b>GROMS = −X + 3.000</b></li>
-                            <hr>
-                            <li>GROMK = 0,4X + 200. −X + 3.000 = 0,4X + 200 ⇒ <b>X = 2.000</b>, <b>P = 2.000 kr.</b> Oms = 4.000.000. TO = 1.240.000. <b>Overskud = 2.760.000 kr.</b></li>
-                            <hr>
-                            <li>Ved X = 13.000 er VE = 0,02·13.000 + 80 = 340 kr. Tilbud 150 kr. &lt; 340 kr. ⇒ <b>afvis ordren</b>.</li>
-                            <hr>
-                            <li>Fuldkommen konkurrence: P = GROMK. Monopol: GROMS = GROMK, fordi virksomheden selv påvirker prisen.</li>
-                        </ol>
+                        <h3>A. Markedsform</h3>
+                        <p><b>Spørgsmål.</b> Hvilken markedsform karakteriserer "HomeFilter", og hvilken karakteriserer "ProClean"? Begrund kort.</p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th></th>
+                                        <th>HomeFilter</th>
+                                        <th>ProClean</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sælgere</td>
+                                        <td>Mange kan levere det samme standardanlæg</td>
+                                        <td>Kun AquaPure. Ingen anden sælger af netop dette anlæg</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Varen</td>
+                                        <td>Standard. Køberen kan ikke skelne udbyderne</td>
+                                        <td>Eget erhvervsanlæg. Kunden kan ikke købe det samme hos en anden</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pris</td>
+                                        <td>600 kr., givet på markedet. Højere pris giver ingen salg</td>
+                                        <td>AquaPure sætter selv prisen. Højere pris sænker salget, men ikke til nul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prisafsætning</td>
+                                        <td>Vandret. P afhænger ikke af X</td>
+                                        <td>P = −0,5X + 3.000. Prisen falder, når mængden stiger</td>
+                                    </tr>
+                                    <tr class="font-weight-bold" style="background:#d9ead3;">
+                                        <td>Markedsform</td>
+                                        <td style="color:#006400;">Fuldkommen konkurrence</td>
+                                        <td style="color:#006400;">Monopol</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Et erhvervsanlæg som ProClean ville man normalt opfatte som monopolistisk konkurrence: flere udbydere, differentierede produkter og en faldende prisafsætning. Her er det oplyst, at AquaPure er eneste udbyder, så markedsformen er monopol. Det kan skyldes, at ProClean har særlige kvaliteter, som andre anlæg på markedet ikke har, eller at godkendelser og regulering gør, at kun AquaPure må levere netop dette anlæg. ProClean er ikke oligopol. Der er ikke få store rivaler, hvis næste træk AquaPure skal gætte.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>B. GROMK for HomeFilter</h3>
+                        <p><b>Spørgsmål.</b> Bestem GROMK for "HomeFilter".</p>
+                        <p>TO = 0,02X² + 80X + 10.000.</p>
+                        <p>GROMK er den afledte af TO. Hvert led for sig:</p>
+                        <p>0,02X² bliver til 2 · 0,02X = 0,04X.</p>
+                        <p>80X bliver til 80.</p>
+                        <p>10.000 er fast og forsvinder.</p>
+                        <p><b>GROMK = 0,04X + 80</b></p>
+                        <p>VE er de variable omkostninger pr. stk., altså TVO divideret med X. TVO = 0,02X² + 80X, så VE = 0,02X + 80. De 10.000 kr. er ikke med i hverken VE eller GROMK. GROMK stiger dobbelt så stejlt som VE, fordi den er den afledte af leddet med X².</p>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>C. Optimal mængde og overskud, HomeFilter</h3>
+                        <p><b>Spørgsmål.</b> Find den overskudsoptimerende mængde og det maksimale overskud for "HomeFilter".</p>
+                        <p>Prisen afhænger ikke af X, så GROMS = P. Overskuddet er størst hvor P = GROMK.</p>
+                        <p>600 = 0,04X + 80</p>
+                        <p>520 = 0,04X</p>
+                        <p><b>X = 520 / 0,04 = 13.000 stk.</b></p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th></th>
+                                        <th>Beregning</th>
+                                        <th class="text-right">Kr.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Omsætning</td>
+                                        <td>600 · 13.000</td>
+                                        <td class="text-right">7.800.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VE</td>
+                                        <td>0,02 · 13.000 + 80</td>
+                                        <td class="text-right">340 pr. stk.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TVO</td>
+                                        <td>340 · 13.000 = 0,02 · 13.000² + 80 · 13.000</td>
+                                        <td class="text-right">4.420.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DB</td>
+                                        <td>7.800.000 − 4.420.000</td>
+                                        <td class="text-right">3.380.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TO</td>
+                                        <td>4.420.000 + 10.000</td>
+                                        <td class="text-right">4.430.000</td>
+                                    </tr>
+                                    <tr class="font-weight-bold" style="background:#d9ead3;">
+                                        <td>Overskud</td>
+                                        <td>7.800.000 − 4.430.000, eller 3.380.000 − 10.000</td>
+                                        <td class="text-right" style="color:#006400;">3.370.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>I appen tastes P med a = 0 og b = 600, og GROMK med a = 0,04 og b = 80. Appen giver P<sup>opt</sup> = 600, X<sup>opt</sup> = 13.000 og DB<sup>opt</sup> = 3.380.000. Overskuddet er DB minus 10.000 kr. i faste omkostninger.</p>
+                        <img class="sol-fig" src="https://storage.googleapis.com/tepedu/sem1/images/e26-12-tema-homefilter.png" width="100%" alt="Optimeringsapp: HomeFilter, P = 600, X = 13.000, DB = 3.380.000">
+                        <p>Den vandrette linje er prisen. Den skærer GROMK ved 13.000 stk. VE ligger under GROMK, fordi VE er gennemsnittet og GROMK er den sidste enhed.</p>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>D. GROMS for ProClean</h3>
+                        <p><b>Spørgsmål.</b> Bestem GROMS for "ProClean".</p>
+                        <p>P = −0,5X + 3.000.</p>
+                        <p>Omsætning = P · X = (−0,5X + 3.000) · X = −0,5X² + 3.000X.</p>
+                        <p>Den afledte er −X + 3.000.</p>
+                        <p>Samme resultat fås ved at fordoble hældningen på P: 2 · (−0,5)X + 3.000 = −X + 3.000.</p>
+                        <p><b>GROMS = −X + 3.000</b></p>
+                        <p>GROMS ligger under prisen, så snart X er positiv. For at sælge ét anlæg mere skal AquaPure sætte prisen ned på alle de anlæg, der allerede sælges.</p>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>E. Optimal mængde, pris og overskud, ProClean</h3>
+                        <p><b>Spørgsmål.</b> Find den overskudsoptimerende mængde, pris og overskud for "ProClean".</p>
+                        <p>TO = 0,2X² + 200X + 40.000.</p>
+                        <p>0,2X² bliver til 0,4X. 200X bliver til 200. De 40.000 kr. er faste og flytter ikke mængden.</p>
+                        <p><b>GROMK = 0,4X + 200</b></p>
+                        <p>GROMS = GROMK:</p>
+                        <p>−X + 3.000 = 0,4X + 200</p>
+                        <p>3.000 − 200 = 0,4X + X</p>
+                        <p>2.800 = 1,4X</p>
+                        <p><b>X = 2.800 / 1,4 = 2.000 stk.</b></p>
+                        <p>P = −0,5 · 2.000 + 3.000 = −1.000 + 3.000 = <b>2.000 kr.</b></p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th></th>
+                                        <th>Beregning</th>
+                                        <th class="text-right">Kr.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Omsætning</td>
+                                        <td>2.000 · 2.000</td>
+                                        <td class="text-right">4.000.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VE</td>
+                                        <td>0,2 · 2.000 + 200</td>
+                                        <td class="text-right">600 pr. stk.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TVO</td>
+                                        <td>600 · 2.000 = 0,2 · 2.000² + 200 · 2.000</td>
+                                        <td class="text-right">1.200.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DB</td>
+                                        <td>4.000.000 − 1.200.000</td>
+                                        <td class="text-right">2.800.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TO</td>
+                                        <td>1.200.000 + 40.000</td>
+                                        <td class="text-right">1.240.000</td>
+                                    </tr>
+                                    <tr class="font-weight-bold" style="background:#d9ead3;">
+                                        <td>Overskud</td>
+                                        <td>4.000.000 − 1.240.000, eller 2.800.000 − 40.000</td>
+                                        <td class="text-right" style="color:#006400;">2.760.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Kontrol ved X = 2.000: GROMS = −2.000 + 3.000 = 1.000, og GROMK = 0,4 · 2.000 + 200 = 1.000. De mødes. Prisen på 2.000 kr. ligger over det punkt.</p>
+                        <p>I appen tastes P med a = −0,5 og b = 3.000, og GROMK med a = 0,4 og b = 200. Appen giver P<sup>opt</sup> = 2.000, X<sup>opt</sup> = 2.000 og DB<sup>opt</sup> = 2.800.000. De 2.760.000 kr. i overskud er DB minus de faste 40.000 kr.</p>
+                        <img class="sol-fig" src="https://storage.googleapis.com/tepedu/sem1/images/e26-12-tema-proclean.png" width="100%" alt="Optimeringsapp: ProClean, P = 2.000, X = 2.000, DB = 2.800.000">
+                        <p>GROMS og GROMK skærer hinanden ved 2.000 stk. og 1.000 kr. Prisen på efterspørgselskurven er 2.000 kr. Den ligger over skæringen, fordi AquaPure selv påvirker prisen.</p>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>F. Kommunens ordre på 50 stk. til 150 kr.</h3>
+                        <p><b>Spørgsmål.</b> Skal AquaPure acceptere kommunens ordre på 50 extra "HomeFilter" til 150 kr.? Begrund med beregning.</p>
+                        <p>Ordren lægges oven i de 13.000 HomeFilter. Der er ledig kapacitet, så de faste 10.000 kr. ændrer sig ikke. De indgår derfor ikke i sammenligningen.</p>
+                        <p>Ved de 13.000 stk. er VE = 0,02 · 13.000 + 80 = <b>340 kr.</b> GROMK er 0,04 · 13.000 + 80 = 600 kr. Tilbuddet på 150 kr. ligger under begge.</p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-right">Kr. pr. stk.</th>
+                                        <th class="text-right">50 stk.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tilbudspris</td>
+                                        <td class="text-right">150</td>
+                                        <td class="text-right">7.500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>VE ved 13.000</td>
+                                        <td class="text-right">340</td>
+                                        <td class="text-right">17.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bidrag, hvis VE var konstant</td>
+                                        <td class="text-right">150 − 340 = −190</td>
+                                        <td class="text-right">−9.500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Præcis meromkostning</td>
+                                        <td class="text-right">TO(13.050) − TO(13.000)</td>
+                                        <td class="text-right">30.050</td>
+                                    </tr>
+                                    <tr class="font-weight-bold" style="background:#f4cccc;">
+                                        <td>Tab ved den præcise beregning</td>
+                                        <td class="text-right">7.500 − 30.050</td>
+                                        <td class="text-right">−22.550</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Den præcise meromkostning:</p>
+                        <p>TO(13.000) = 0,02 · 13.000² + 80 · 13.000 + 10.000 = 3.380.000 + 1.040.000 + 10.000 = 4.430.000</p>
+                        <p>TO(13.050) = 0,02 · 13.050² + 80 · 13.050 + 10.000 = 3.406.050 + 1.044.000 + 10.000 = 4.460.050</p>
+                        <p>Forskel = 4.460.050 − 4.430.000 = <b>30.050 kr.</b> Det er 601 kr. pr. stk. VE på 340 kr. er kun omkostningen på det stk., man allerede er nået til. De næste 50 stk. er dyrere, fordi VE stiger med X. Derfor er tabet 22.550 kr. og ikke kun 9.500 kr.</p>
+                        <p><b style="color:#006400;">Afvis ordren.</b> Begge regnestykker giver samme konklusion. 150 kr. dækker hverken VE på 340 kr. eller GROMK på 600 kr.</p>
+                    </li>
+
+                    <li class="timeline-item bg-white ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h3>G. De to betingelser</h3>
+                        <p><b>Spørgsmål.</b> Forklar kort forskellen på optimalitetsbetingelsen ved fuldkommen konkurrence og ved monopol.</p>
+                        <p>HomeFilter: prisen er givet. Ét anlæg mere lægger hele prisen til omsætningen, så GROMS = P. Overskuddet er størst hvor <b>P = GROMK</b>. I appen er det den vandrette linje, og den skærer GROMK ved 13.000 stk.</p>
+                        <p>ProClean: AquaPure skal sænke prisen for at sælge ét anlæg mere. GROMS er derfor lavere end prisen, og overskuddet er størst hvor <b>GROMS = GROMK</b>.</p>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered table-hover">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>Ved optimum</th>
+                                        <th>HomeFilter</th>
+                                        <th>ProClean</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Betingelse</td>
+                                        <td>P = GROMK</td>
+                                        <td>GROMS = GROMK</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mængde</td>
+                                        <td>13.000</td>
+                                        <td>2.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pris</td>
+                                        <td>600</td>
+                                        <td>2.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GROMK</td>
+                                        <td>600</td>
+                                        <td>1.000</td>
+                                    </tr>
+                                    <tr class="font-weight-bold" style="background:#d9ead3;">
+                                        <td>Pris mod GROMK</td>
+                                        <td>P = GROMK</td>
+                                        <td>P = 2.000 ligger over GROMK = 1.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Forskellen ses på ProClean-grafen. Skæringen mellem GROMS og GROMK ligger ved 1.000 kr. Prisen på efterspørgselskurven er 2.000 kr. Ved monopol er prisen højere end grænseomkostningen. Ved fuldkommen konkurrence er de ens.</p>
                     </li>
                 </ul>
             </div>
